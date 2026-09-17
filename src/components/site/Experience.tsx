@@ -1,5 +1,5 @@
 import { PageTransition } from "@/components/layout/PageTransition";
-import { environments, experience } from "@/content/experience";
+import { experience } from "@/content/experience";
 import { PageHeader, PageSection } from "./primitives";
 import { SpineTimeline } from "./SpineTimeline";
 
@@ -15,7 +15,7 @@ export function Experience() {
         id="organisations"
         label="Today back to 2001"
         title="Where the work was done."
-        intro={`Across ${environments.join(", ").toLowerCase()}. Most recent first.`}
+        wide
       >
         <SpineTimeline entries={experience} />
       </PageSection>
