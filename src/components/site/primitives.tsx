@@ -125,7 +125,7 @@ export function PageHeader({ label,
       <Ground />
       <Container>
         <p className={g.label}>{label}</p>
-        <h1 className={cn("t-h1 mt-4 max-w-[18ch]", g.heading)}>{title}</h1>
+        <h1 className={cn("t-h1 mt-4", g.heading)}>{title}</h1>
         {lead ? <p className={cn("t-lead mt-6", g.body)}>{lead}</p> : null}
         {children}
       </Container>
