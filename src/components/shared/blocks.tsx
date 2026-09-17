@@ -158,7 +158,7 @@ export function PatternsGrid() {
 /** One organisation, in full. Periods and roles render only when verified. */
 export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
   const studies = resolveCaseStudies(entry.relatedCaseStudies);
-  const pending = entry.achievements.length === 0;
+  const pending = entry.achievements.length === 0 && entry.scope.length === 0;
   return (
     <article id={entry.organisation.toLowerCase()} className="grid grid-cols-1 gap-4 py-10 md:grid-cols-12 md:gap-8">
       <div className="md:col-span-4">
@@ -188,17 +188,21 @@ export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
 
         {!pending ? (
           <>
-            <Eyebrow as="p" className="mb-2 mt-6">
-              Selected contribution
-            </Eyebrow>
-            <ul className="flex flex-col gap-3">
-              {entry.achievements.map((a) => (
-                <li key={a} className="t-body flex gap-3 text-paper">
-                  <span className="mt-[0.72em] h-px w-3 shrink-0 bg-copper" aria-hidden="true" />
-                  <span>{a}</span>
-                </li>
-              ))}
-            </ul>
+            {entry.achievements.length ? (
+              <>
+                <Eyebrow as="p" className="mb-2 mt-6">
+                  Selected contribution
+                </Eyebrow>
+                <ul className="flex flex-col gap-3">
+                  {entry.achievements.map((a) => (
+                    <li key={a} className="t-body flex gap-3 text-paper">
+                      <span className="mt-[0.72em] h-px w-3 shrink-0 bg-copper" aria-hidden="true" />
+                      <span>{a}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
             {entry.scope.length ? (
               <>
                 <Eyebrow as="p" className="mb-2 mt-6">
@@ -213,10 +217,14 @@ export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
                 </ul>
               </>
             ) : null}
-            <Eyebrow as="p" className="mb-3 mt-6">
-              Themes &amp; technologies
-            </Eyebrow>
-            <TagList items={entry.themes} />
+            {entry.themes.length ? (
+              <>
+                <Eyebrow as="p" className="mb-3 mt-6">
+                  Themes &amp; technologies
+                </Eyebrow>
+                <TagList items={entry.themes} />
+              </>
+            ) : null}
             {entry.technologies?.length ? (
               <div className="mt-3">
                 <TagList items={entry.technologies} tone="copper" />

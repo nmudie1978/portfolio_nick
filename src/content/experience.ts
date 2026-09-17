@@ -50,6 +50,17 @@ export const journey: JourneyStage[] = [
  */
 export const experience: ExperienceEntry[] = [
   {
+    organisation: "Analysys Mason",
+    role: "Principal Transformation Consultant",
+    period: "Current",
+    context:
+      "Telecom, media and technology consultancy. Transformation consulting for telecom operators, based in Oslo — the current role.",
+    achievements: [],
+    scope: ["Transformation consulting for telecom operators"],
+    themes: ["Transformation", "BSS/OSS", "Architecture", "Consulting"],
+    stages: ["Transformation", "AI / Modern Telecom"],
+  },
+  {
     organisation: "Marlink",
     role: null,
     period: null,

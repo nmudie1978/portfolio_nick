@@ -32,6 +32,8 @@ export interface Person {
   differentiators: string[];
   /** One line describing the current focus. */
   currentFocus: string;
+  /** Verified current position. */
+  currentRole: { title: string; organisation: string; location: string; href?: string };
   /** Verified quick facts rendered next to the portrait. */
   quickFacts: QuickFact[];
   /**

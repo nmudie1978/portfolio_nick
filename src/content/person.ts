@@ -23,7 +23,7 @@ export const person: Person = {
   ],
   bio: [
     "Nick Mudie is a telecom architecture and transformation professional with more than twenty-five years inside operator technology. He started in OSS delivery and operations, built service assurance and observability capability for a national operator, and moved through architecture into BSS/OSS, greenfield transformation and hybrid cloud.",
-    "His work spans Telia, Telenor, Vodafone, UPC and Marlink — operator, vendor and managed-service perspectives — and now centres on AI-native operations, modern telecom platforms and the BSS/OSS Academy, an independent body of work explaining how modern telecom architecture actually works.",
+    "His work spans Telia, Telenor, Vodafone, UPC and Marlink — operator, vendor and managed-service perspectives. He is currently a Principal Transformation Consultant at Analysys Mason in Oslo, and his thinking centres on AI-native operations, modern telecom platforms and the BSS/OSS Academy, an independent body of work explaining how modern telecom architecture actually works.",
   ],
   differentiators: [
     "Has operated, provisioned and assured the systems he now designs — architecture grounded in live-operator reality.",
@@ -32,7 +32,13 @@ export const person: Person = {
     "Publishes the thinking: a vendor-neutral BSS/OSS Academy, architecture models and viewpoints that others use.",
   ],
   currentFocus:
-    "AI-native and agentic operations, AI infrastructure as part of the telecom estate, and catalog-driven, ODA-aligned BSS/OSS transformation that survives real orders and real incidents.",
+    "Telecom transformation consulting at Analysys Mason — and, around it, AI-native and agentic operations, AI infrastructure as part of the telecom estate, and catalog-driven, ODA-aligned BSS/OSS transformation that survives real orders and real incidents.",
+  currentRole: {
+    title: "Principal Transformation Consultant",
+    organisation: "Analysys Mason",
+    location: "Oslo",
+    href: "https://www.analysysmason.com/",
+  },
   quickFacts: [
     { value: "25+ years", label: "Telecom experience" },
     { value: "Five operators", label: "Telia · Telenor · Vodafone · UPC · Marlink" },

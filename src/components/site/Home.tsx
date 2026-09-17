@@ -32,6 +32,20 @@ export function Home() {
       </h1>
       <p className={cn("t-h2 mt-6 max-w-[22ch]", g.heading)}>{person.hero.statement}</p>
       <p className={cn("t-lead mt-6 max-w-[56ch]", g.body)}>{person.hero.support}</p>
+      <p className={cn("t-small mt-5 flex flex-wrap items-center gap-x-2", g.muted)}>
+        <span className={cn("font-semibold uppercase tracking-[0.1em] text-[0.72rem]", g.accent)}>Now</span>
+        <span className={g.heading}>{person.currentRole.title}</span>
+        <span aria-hidden="true">·</span>
+        {person.currentRole.href ? (
+          <a href={person.currentRole.href} target="_blank" rel="noopener noreferrer" className={cn("link-ul", g.heading)}>
+            {person.currentRole.organisation}
+          </a>
+        ) : (
+          <span className={g.heading}>{person.currentRole.organisation}</span>
+        )}
+        <span aria-hidden="true">·</span>
+        <span>{person.currentRole.location}</span>
+      </p>
       <ol className={cn("mt-8 flex flex-wrap items-center gap-x-2 gap-y-2", !split && "justify-center")} aria-label="Career progression">
         {person.journey.map((stage, i) => (
           <li key={stage} className="flex items-center gap-2">
