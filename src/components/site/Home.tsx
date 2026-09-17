@@ -5,8 +5,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Portrait } from "@/components/ui/Portrait";
 import { ArrowLink, ButtonLink } from "@/components/ui/Links";
 import { ArchitectureMatrix } from "@/components/architecture/ArchitectureMatrix";
-import { AcademyOverview, FocusGrid, ThinkingIndex } from "@/components/shared/blocks";
-import { GroundButton, Ground, PageSection, onGround, shape } from "./primitives";
+import { AcademyOverview } from "@/components/shared/blocks";
+import { Ground, GroundButton, PageSection, onGround, shape } from "./primitives";
 import { Timeline } from "./Timeline";
 import { THEME } from "./theme";
 import { person } from "@/content/person";
@@ -58,14 +58,6 @@ export function Home() {
           </li>
         ))}
       </ol>
-      <div className={cn("mt-10 flex flex-wrap gap-3", !split && "justify-center")}>
-        <GroundButton href={"/achievements"}>
-          What I have delivered
-        </GroundButton>
-        <GroundButton href={"/contact"} kind="outline">
-          Contact
-        </GroundButton>
-      </div>
     </div>
   );
 
@@ -163,13 +155,9 @@ export function Home() {
             </ul>
           </Reveal>
           <Reveal className="lg:col-span-6" delay={80}>
-            <ArchitectureMatrix mode="ambient" initialLens="order" exploreHref={"/recognition/architecture-model"} />
+            <ArchitectureMatrix mode="ambient" initialLens="order" />
             <p className="t-small mt-4 text-paper-3">
-              The estate as I hold it in my head: layers down, lifecycle across.{" "}
-              <Link href={"/recognition/architecture-model"} className="link-ul text-paper-2">
-                Open the interactive model
-              </Link>
-              .
+              The estate as I hold it in my head: layers down, lifecycle across.
             </p>
           </Reveal>
         </div>
@@ -237,8 +225,8 @@ export function Home() {
       </PageSection>
 
       {/* ── Focus ─────────────────────────────────────────────────────── */}
-      <PageSection id="focus" label="Current focus" title="What I am working on now." intro={person.currentFocus}>
-        <FocusGrid limit={4} />
+      <PageSection id="focus" label="Current focus" title="What I am working on now.">
+        <p className="t-lead max-w-[70ch] text-paper-2">{person.currentFocus}</p>
       </PageSection>
 
       {/* ── Recognition band + Academy ───────────────────────────────── */}
@@ -259,8 +247,6 @@ export function Home() {
           <Reveal>
             <AcademyOverview compact />
           </Reveal>
-          <p className="section-label mt-14 mb-6">Selected thinking</p>
-          <ThinkingIndex limit={3} />
         </Container>
       </section>
 

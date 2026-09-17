@@ -1,11 +1,8 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowLink, ButtonLink, ExternalLink } from "@/components/ui/Links";
 import { TagList } from "@/components/ui/Tag";
-import { CaseStudyCard, InsightCard } from "@/components/ui/Cards";
 import { Reveal } from "@/components/ui/Reveal";
 import { person } from "@/content/person";
-import { focus } from "@/content/focus";
-import { insights } from "@/content/insights";
 import { caseStudies } from "@/content/case-studies";
 import type { ExperienceEntry } from "@/content/types";
 import { cn } from "@/lib/cn";
@@ -102,56 +99,23 @@ export function AcademyWorkGrid({ className }: { className?: string }) {
   );
 }
 
-/** Current focus areas with their honest status. */
-export function FocusGrid({ limit, columns = 4 }: { limit?: number; columns?: 2 | 3 | 4 }) {
-  const items = typeof limit === "number" ? focus.slice(0, limit) : focus;
-  const cols = { 2: "sm:grid-cols-2", 3: "sm:grid-cols-2 lg:grid-cols-3", 4: "sm:grid-cols-2 lg:grid-cols-4" }[columns];
+/** Architecture patterns drawn from repeated experience — named and summarised, not expanded. */
+export function PatternsList() {
+  const patterns = caseStudies.filter((c) => c.kind === "pattern");
   return (
-    <ul className={cn("grid grid-cols-1 gap-x-8 gap-y-6", cols)}>
-      {items.map((f, i) => (
-        <Reveal key={f.title} as="li" delay={Math.min(i, 7) * 40}>
+    <ul className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+      {patterns.map((s, i) => (
+        <Reveal key={s.slug} as="li" delay={i * 60}>
           <div className="flex h-full flex-col border-t rule pt-4">
-            <Eyebrow
-              as="span"
-              tone={f.status === "exploring" ? "signal" : f.status === "building" ? "copper" : "muted"}
-              className="mb-3"
-            >
-              {f.status}
+            <Eyebrow as="span" tone="copper" className="mb-3">
+              {s.category}
             </Eyebrow>
-            <h3 className="t-h3 text-paper">{f.title}</h3>
-            <p className="t-small mt-2 text-paper-2">{f.description}</p>
+            <h3 className="t-h3 text-paper">{s.title}</h3>
+            <p className="t-small mt-2 text-paper-2">{s.summary}</p>
           </div>
         </Reveal>
       ))}
     </ul>
-  );
-}
-
-/** All viewpoints as an index grid. */
-export function ThinkingIndex({ limit }: { limit?: number }) {
-  const items = typeof limit === "number" ? insights.slice(0, limit) : insights;
-  return (
-    <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((ins, i) => (
-        <Reveal key={ins.slug} delay={Math.min(i % 3, 2) * 60}>
-          <InsightCard insight={ins} index={i} />
-        </Reveal>
-      ))}
-    </div>
-  );
-}
-
-/** Architecture patterns drawn from repeated experience. */
-export function PatternsGrid() {
-  const patterns = caseStudies.filter((c) => c.kind === "pattern");
-  return (
-    <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-      {patterns.map((s, i) => (
-        <Reveal key={s.slug} delay={i * 60}>
-          <CaseStudyCard study={s} />
-        </Reveal>
-      ))}
-    </div>
   );
 }
 

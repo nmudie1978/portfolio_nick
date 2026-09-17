@@ -51,5 +51,5 @@ export const PRIMARY_NAV: NavItem[] = [
 ];
 
 export const SECONDARY_NAV: NavItem[] = [
-  { label: "Architecture model", href: "/recognition/architecture-model" },
+  { label: "BSS/OSS Academy", href: "/recognition#academy" },
 ];

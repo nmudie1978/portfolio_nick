@@ -4,7 +4,6 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TagList } from "@/components/ui/Tag";
 import { ArrowLink, BackLink } from "@/components/ui/Links";
 import { ContentBlocks } from "@/components/ui/ContentBlocks";
-import { InsightCard } from "@/components/ui/Cards";
 import { caseStudies } from "@/content/case-studies";
 import type { CaseStudy } from "@/content/types";
 import { resolveInsights } from "@/lib/content";
@@ -21,18 +20,14 @@ const SECTIONS = [
 ] as const;
 
 /**
- * Detailed case-study presentation, shared by every variant. Engagements
- * are reached from Achievements; architecture patterns from Recognition.
+ * Detailed case-study presentation for an engagement, reached from Achievements.
  */
 export function CaseStudyDetail({ study }: { study: CaseStudy; }) {
   const related = resolveInsights(study.relatedInsights);
-  const sameKind = caseStudies.filter((c) => c.kind === study.kind);
-  const index = sameKind.findIndex((c) => c.slug === study.slug);
-  const next = sameKind[(index + 1) % sameKind.length];
-  const isPattern = study.kind === "pattern";
-  const back = isPattern
-    ? { href: "/recognition", label: "Recognition" }
-    : { href: "/achievements", label: "Achievements" };
+  const engagements = caseStudies.filter((c) => c.kind === "engagement");
+  const index = engagements.findIndex((c) => c.slug === study.slug);
+  const next = engagements[(index + 1) % engagements.length];
+  const back = { href: "/achievements", label: "Achievements" };
 
   return (
     <PageTransition>
@@ -48,7 +43,7 @@ export function CaseStudyDetail({ study }: { study: CaseStudy; }) {
                   <Eyebrow as="span" tone="copper">
                     {study.category}
                   </Eyebrow>
-                  <Eyebrow as="span">{study.organisation ?? (isPattern ? "Architecture pattern" : "Engagement")}</Eyebrow>
+                  <Eyebrow as="span">{study.organisation ?? "Engagement"}</Eyebrow>
                 </div>
                 <h1 className="t-h1 mt-5 max-w-[20ch]">{study.title}</h1>
                 <p className="t-lead measure mt-6">{study.summary}</p>
@@ -90,11 +85,14 @@ export function CaseStudyDetail({ study }: { study: CaseStudy; }) {
                   </h2>
                 </div>
                 <div className="md:col-span-9">
-                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                  <ul className="flex flex-col divide-y rule border-y rule">
                     {related.map((r) => (
-                      <InsightCard key={r.slug} insight={r} />
+                      <li key={r.slug} className="py-4">
+                        <p className="t-h3 text-paper">{r.title}</p>
+                        <p className="t-small mt-1 max-w-[62ch] text-paper-2">{r.summary}</p>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </Container>

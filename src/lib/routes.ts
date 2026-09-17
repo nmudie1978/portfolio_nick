@@ -1,15 +1,8 @@
 import type { CaseStudy } from "@/content/types";
 
-/**
- * Content routes. Engagement case studies live under Achievements;
- * architecture patterns and viewpoints live under Recognition.
- */
-export function caseStudyHref(study: Pick<CaseStudy, "slug" | "kind">) {
-  return study.kind === "pattern" ? `/recognition/patterns/${study.slug}` : `/achievements/${study.slug}`;
-}
-
-export function insightHref(slug: string) {
-  return `/recognition/${slug}`;
+/** Engagement case studies live under Achievements. Patterns and viewpoints have no pages of their own. */
+export function caseStudyHref(study: Pick<CaseStudy, "slug">) {
+  return `/achievements/${study.slug}`;
 }
 
 /** True when `pathname` is `href` or a descendant of it. The root only matches exactly. */
