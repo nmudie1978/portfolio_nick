@@ -26,6 +26,19 @@ export interface Person {
     support: string;
   };
   intro: string[];
+  /** Short executive biography, one to three paragraphs. */
+  bio: string[];
+  /** What differentiates the profile. Short, evidence-backed statements. */
+  differentiators: string[];
+  /** One line describing the current focus. */
+  currentFocus: string;
+  /** Verified quick facts rendered next to the portrait. */
+  quickFacts: QuickFact[];
+  /**
+   * Public path to a real portrait (e.g. "/portrait/nick-mudie.jpg").
+   * Null renders a designed placeholder in the same frame.
+   */
+  portrait: string | null;
   links: {
     linkedin: string;
     academy: string;
@@ -35,6 +48,13 @@ export interface Person {
     /** Public CV URL or path. Null renders "available on request". */
     cv: string | null;
   };
+}
+
+export interface QuickFact {
+  /** Large value, e.g. "25+ years". */
+  value: string;
+  /** Small label beneath, e.g. "Telecom experience". */
+  label: string;
 }
 
 export interface ExpertiseArea {
@@ -66,6 +86,32 @@ export interface ExperienceEntry {
   themes: string[];
   technologies?: string[];
   relatedCaseStudies?: Slug[];
+  /** Journey stage labels this organisation evidences (see `journey`). */
+  stages: string[];
+}
+
+/** A verified delivery, with click-through to its case study. */
+export interface Achievement {
+  slug: Slug;
+  organisation: string;
+  title: string;
+  /** Role-accurate one-line statement. Never overstates ownership. */
+  headline: string;
+  scope: string[];
+  technologies: string[];
+  /** Existing case-study slug for the detailed presentation. */
+  caseStudy: Slug;
+  /** Journey stage label this achievement belongs to. */
+  stage: string;
+  /** Short statement of why it matters architecturally. */
+  significance?: string;
+}
+
+export interface SkillDomain {
+  slug: Slug;
+  title: string;
+  summary: string;
+  skills: string[];
 }
 
 /** A stage in the architectural career progression. */

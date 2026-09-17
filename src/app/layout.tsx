@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Instrument_Sans, Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
 import { KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/content/site";
 import { person } from "@/content/person";
 import { OG_IMAGE, snippet } from "@/lib/metadata";
@@ -24,6 +22,20 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-plex-mono",
+  display: "swap",
+});
+
+// Review-phase variant fonts. Remove the unused ones once a variant is chosen.
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  variable: "--font-newsreader",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -50,7 +62,7 @@ export const metadata: Metadata = {
     description: snippet(SITE_DESCRIPTION),
     url: SITE_URL,
     siteName: SITE_NAME,
-    type: "website",
+    type: "profile",
     locale: "en_GB",
     images: [OG_IMAGE],
   },
@@ -76,8 +88,12 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${instrument.variable} ${plexMono.variable}`}>
-      <body className="min-h-dvh flex flex-col">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} ${newsreader.variable} ${manrope.variable}`}
+    >
+      <body className="min-h-dvh">
         {/* Marks JS as available so reveal-on-scroll can safely hide content
             until it enters the viewport. Without JS, everything stays visible. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
@@ -85,11 +101,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
         />
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

@@ -7,7 +7,7 @@
    tone reserved for assurance / runtime feedback. Everything else is
    achieved through typography, spacing and hairline rules.
    ────────────────────────────────────────────────────────────────────── */
-@theme inline {
+@theme {
   --color-ink: #131416;
   --color-ink-2: #191b1e;
   --color-ink-3: #1f2226;
@@ -33,6 +33,92 @@
 :root {
   color-scheme: dark;
   --measure: 62ch;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Variants
+   Each review variant redefines the same semantic tokens, so shared
+   components (content blocks, diagrams, detail pages) render correctly in
+   all of them. `--color-copper` is the primary accent in every variant;
+   the name is kept for compatibility with existing utilities.
+   ────────────────────────────────────────────────────────────────────── */
+
+/* A · Drafting Room — the existing graphite / copper identity, refined. */
+[data-variant="a"] {
+  color-scheme: dark;
+}
+
+/* B · Executive Ledger — deep navy, ivory type, brass accent, serif display. */
+[data-variant="b"] {
+  color-scheme: dark;
+  --color-ink: #0a0e1a;
+  --color-ink-2: #0f1424;
+  --color-ink-3: #151b2e;
+  --color-line: #222a40;
+  --color-line-strong: #34405c;
+  --color-paper: #efe9dc;
+  --color-paper-2: #b8b2a5;
+  --color-paper-3: #877f70;
+  --color-copper: #cfa964;
+  --color-copper-soft: rgba(207, 169, 100, 0.14);
+  --color-signal: #8fb0c4;
+  --color-signal-soft: rgba(143, 176, 196, 0.14);
+  --font-display: var(--font-newsreader);
+}
+[data-variant="b"] .t-display,
+[data-variant="b"] .t-h1,
+[data-variant="b"] .t-h2,
+[data-variant="b"] .t-h3 {
+  font-stretch: 100%;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+[data-variant="b"] .t-display { font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: 1.0; }
+[data-variant="b"] .t-h1 { font-size: clamp(2.3rem, 4.6vw, 3.8rem); }
+[data-variant="b"] .t-h2 { font-size: clamp(1.75rem, 3vw, 2.6rem); }
+[data-variant="b"] .t-h3 { font-size: clamp(1.3rem, 1.7vw, 1.6rem); letter-spacing: 0; }
+
+/* C · Marine Foam — light, teal accent, Manrope. */
+[data-variant="c"] {
+  color-scheme: light;
+  --color-ink: #f7faf8;
+  --color-ink-2: #eef4f1;
+  --color-ink-3: #e2ece8;
+  --color-line: #d2dfda;
+  --color-line-strong: #b4c9c2;
+  --color-paper: #0b2f33;
+  --color-paper-2: #3b5c5f;
+  --color-paper-3: #6d8a8c;
+  --color-copper: #0f5c63;
+  --color-copper-soft: rgba(15, 92, 99, 0.12);
+  --color-signal: #2f8f99;
+  --color-signal-soft: rgba(63, 158, 168, 0.16);
+  --font-display: var(--font-manrope);
+  --font-sans: var(--font-manrope);
+}
+[data-variant="c"] .t-display,
+[data-variant="c"] .t-h1,
+[data-variant="c"] .t-h2,
+[data-variant="c"] .t-h3 {
+  font-stretch: 100%;
+  font-weight: 600;
+}
+[data-variant="c"] .t-display { letter-spacing: -0.04em; }
+[data-variant="c"] ::selection { background: var(--color-copper); color: #ffffff; }
+[data-variant="c"] .drafting-grid {
+  background-image:
+    linear-gradient(to right, rgba(11, 47, 51, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 47, 51, 0.06) 1px, transparent 1px);
+}
+
+/* Variant scope fills the viewport so its ground colour is the page ground. */
+.variant-root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
