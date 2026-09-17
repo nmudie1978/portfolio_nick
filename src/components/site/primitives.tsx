@@ -124,7 +124,7 @@ export function PageHeader({ label,
   title: string;
   lead?: string;
   children?: React.ReactNode;
-  /** Render the title as a full-sentence statement at the h2 scale rather than a display headline. */
+  /** Render the title as a full-sentence statement at lead-paragraph scale rather than a display headline. */
   statement?: boolean;
 }) {
   const g = onGround();
@@ -133,7 +133,9 @@ export function PageHeader({ label,
       <Ground />
       <Container>
         <p className={g.label}>{label}</p>
-        <h1 className={cn(statement ? "t-h2 mt-4 max-w-[44ch]" : "t-h1 mt-4", g.heading)}>{title}</h1>
+        <h1 className={cn(statement ? cn("t-lead mt-5 max-w-[64ch] font-normal", g.body) : cn("t-h1 mt-4", g.heading))}>
+          {title}
+        </h1>
         {lead ? <p className={cn("t-lead mt-6", g.body)}>{lead}</p> : null}
         {children}
       </Container>
