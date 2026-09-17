@@ -90,7 +90,7 @@ export function AchievementCarousel() {
                 </span>
                 <span className="t-h3 mt-3 block text-paper transition-colors group-hover:text-copper">{a.title}</span>
                 <span className="t-small mt-3 block text-paper-2">{a.headline}</span>
-                <span className="t-small mt-auto pt-6 font-semibold text-copper">Read the case study →</span>
+                <span className="t-small mt-auto pt-6 font-semibold text-copper">Read the engagement →</span>
               </Link>
             </li>
           );

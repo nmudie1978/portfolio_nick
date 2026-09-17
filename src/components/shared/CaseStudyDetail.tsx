@@ -13,14 +13,14 @@ const SECTIONS = [
   ["context", "Context", "What was happening?"],
   ["challenge", "Challenge", "What problem needed solving?"],
   ["architecture", "Architecture", "What was the architectural approach?"],
-  ["role", "My role", "What I actually did"],
+  ["role", "What I delivered", "My role and what I was accountable for"],
   ["transformation", "Transformation", "What changed?"],
   ["outcome", "Outcome", "What was achieved?"],
   ["lessons", "What I learned", "The broader architectural insight"],
 ] as const;
 
 /**
- * Detailed case-study presentation for an engagement, reached from Achievements.
+ * Detailed engagement write-up, reached from Achievements.
  */
 export function CaseStudyDetail({ study }: { study: CaseStudy; }) {
   const related = resolveInsights(study.relatedInsights);

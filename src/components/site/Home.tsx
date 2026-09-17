@@ -161,7 +161,7 @@ export function Home() {
         id="achievements"
         label="Selected achievements"
         title="Delivered, not described."
-        intro="Firsts, greenfield programmes and modernisations inside live operators. Each has a detailed case study; none carries an invented metric."
+        intro="Firsts, greenfield programmes and modernisations inside live operators. Each has a detailed engagement write-up; none carries an invented metric."
         aside={<ArrowLink href={"/achievements"}>All achievements</ArrowLink>}
         tone="tint"
       >

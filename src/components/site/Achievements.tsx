@@ -16,7 +16,7 @@ export function Achievements() {
       <PageHeader
         label="Achievements"
         title="What was actually delivered."
-        lead="Six pieces of work inside live operators — firsts, greenfield programmes and modernisations. The wording keeps the role as it was; the depth is in the case studies."
+        lead="Six pieces of work inside live operators — firsts, greenfield programmes and modernisations. The wording keeps the role as it was; the depth is in each engagement write-up."
       />
       <section aria-label="Achievements">
         <Container>
@@ -65,7 +65,7 @@ export function Achievements() {
                       {study ? (
                         <div className="mt-8">
                           <ArrowLink href={caseStudyHref(study)} tone="copper">
-                            Read the case study — context, challenge, role, outcome, lessons
+                            Read the engagement — context, challenge, what I delivered, outcome, lessons
                           </ArrowLink>
                         </div>
                       ) : null}

@@ -183,7 +183,7 @@ export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
               <div className="mt-6 flex flex-col gap-2">
                 {studies.map((s) => (
                   <ArrowLink key={s.slug} href={caseStudyHref(s)}>
-                    Case study: {s.title}
+                    Engagement: {s.title}
                   </ArrowLink>
                 ))}
               </div>
