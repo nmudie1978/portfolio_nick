@@ -9,8 +9,6 @@ import { caseStudies } from "@/content/case-studies";
 import type { CaseStudy } from "@/content/types";
 import { resolveInsights } from "@/lib/content";
 import { caseStudyHref } from "@/lib/routes";
-import { vhref } from "@/variants/paths";
-import type { VariantId } from "@/variants/types";
 
 const SECTIONS = [
   ["context", "Context", "What was happening?"],
@@ -26,15 +24,15 @@ const SECTIONS = [
  * Detailed case-study presentation, shared by every variant. Engagements
  * are reached from Achievements; architecture patterns from Recognition.
  */
-export function CaseStudyDetail({ study, variant }: { study: CaseStudy; variant: VariantId }) {
+export function CaseStudyDetail({ study }: { study: CaseStudy; }) {
   const related = resolveInsights(study.relatedInsights);
   const sameKind = caseStudies.filter((c) => c.kind === study.kind);
   const index = sameKind.findIndex((c) => c.slug === study.slug);
   const next = sameKind[(index + 1) % sameKind.length];
   const isPattern = study.kind === "pattern";
   const back = isPattern
-    ? { href: vhref(variant, "/recognition"), label: "Recognition" }
-    : { href: vhref(variant, "/achievements"), label: "Achievements" };
+    ? { href: "/recognition", label: "Recognition" }
+    : { href: "/achievements", label: "Achievements" };
 
   return (
     <PageTransition>
@@ -94,7 +92,7 @@ export function CaseStudyDetail({ study, variant }: { study: CaseStudy; variant:
                 <div className="md:col-span-9">
                   <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                     {related.map((r) => (
-                      <InsightCard key={r.slug} insight={r} variant={variant} />
+                      <InsightCard key={r.slug} insight={r} />
                     ))}
                   </div>
                 </div>
@@ -110,7 +108,7 @@ export function CaseStudyDetail({ study, variant }: { study: CaseStudy; variant:
                 <Eyebrow as="p">Next</Eyebrow>
               </div>
               <div className="md:col-span-9">
-                <ArrowLink href={caseStudyHref(variant, next)} tone="copper">
+                <ArrowLink href={caseStudyHref(next)} tone="copper">
                   {next.title}
                 </ArrowLink>
               </div>

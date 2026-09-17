@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import { PRIMARY_NAV, SECONDARY_NAV } from "@/content/site";
 import { person } from "@/content/person";
 import { cn } from "@/lib/cn";
-import { isActivePath, vhref } from "@/variants/paths";
-import type { VariantId } from "@/variants/types";
+import { isActivePath } from "@/lib/routes";
 
 export interface NavStyles {
   /** The sticky <header>. */
@@ -32,12 +31,9 @@ export interface NavStyles {
  * menu with scroll lock and Escape to close. Variants supply the brand
  * mark and class hooks; behaviour is identical everywhere.
  */
-export function NavShell({
-  variant,
-  brand,
+export function NavShell({ brand,
   styles,
 }: {
-  variant: VariantId;
   brand: React.ReactNode;
   styles: NavStyles;
 }) {
@@ -56,15 +52,9 @@ export function NavShell({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
-  const items = PRIMARY_NAV.map((i) => ({
-    ...i,
-    href: vhref(variant, i.href),
-  }));
-  const secondary = SECONDARY_NAV.map((i) => ({
-    ...i,
-    href: vhref(variant, i.href),
-  }));
-  const active = (href: string) => isActivePath(pathname, href, variant);
+  const items = PRIMARY_NAV;
+  const secondary = SECONDARY_NAV;
+  const active = (href: string) => isActivePath(pathname, href);
   const contact = items.find((i) => i.label === "Contact");
   const desktopItems = styles.cta
     ? items.filter((i) => i.label !== "Contact")
@@ -83,7 +73,7 @@ export function NavShell({
       <div className={cn("relative z-50", styles.header)}>
         <div className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12 md:h-[4.5rem]">
           <Link
-            href={vhref(variant, "/")}
+            href={"/"}
             className="group flex items-baseline gap-3"
             aria-label={`${person.name} — profile`}
           >

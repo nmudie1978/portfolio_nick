@@ -11,8 +11,6 @@ import type { ExperienceEntry } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { resolveCaseStudies } from "@/lib/content";
 import { caseStudyHref } from "@/lib/routes";
-import { vhref } from "@/variants/paths";
-import type { VariantId } from "@/variants/types";
 
 /* ──────────────────────────────────────────────────────────────────────
    Content-heavy blocks shared by all variants. They use only semantic
@@ -41,7 +39,7 @@ export const ACADEMY_WORK: [string, string][] = [
 ];
 
 /** The BSS/OSS Academy described as a body of work. */
-export function AcademyOverview({ variant, compact = false }: { variant?: VariantId; compact?: boolean }) {
+export function AcademyOverview({ compact = false }: { compact?: boolean }) {
   return (
     <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
       <div className="md:col-span-6">
@@ -77,9 +75,9 @@ export function AcademyOverview({ variant, compact = false }: { variant?: Varian
             </li>
           ))}
         </ul>
-        {variant && compact ? (
+        {compact ? (
           <div className="mt-5">
-            <ArrowLink href={vhref(variant, "/recognition")}>The full body of work</ArrowLink>
+            <ArrowLink href={"/recognition"}>The full body of work</ArrowLink>
           </div>
         ) : null}
       </div>
@@ -130,13 +128,13 @@ export function FocusGrid({ limit, columns = 4 }: { limit?: number; columns?: 2 
 }
 
 /** All viewpoints as an index grid. */
-export function ThinkingIndex({ variant, limit }: { variant: VariantId; limit?: number }) {
+export function ThinkingIndex({ limit }: { limit?: number }) {
   const items = typeof limit === "number" ? insights.slice(0, limit) : insights;
   return (
     <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((ins, i) => (
         <Reveal key={ins.slug} delay={Math.min(i % 3, 2) * 60}>
-          <InsightCard insight={ins} variant={variant} index={i} />
+          <InsightCard insight={ins} index={i} />
         </Reveal>
       ))}
     </div>
@@ -144,13 +142,13 @@ export function ThinkingIndex({ variant, limit }: { variant: VariantId; limit?: 
 }
 
 /** Architecture patterns drawn from repeated experience. */
-export function PatternsGrid({ variant }: { variant: VariantId }) {
+export function PatternsGrid() {
   const patterns = caseStudies.filter((c) => c.kind === "pattern");
   return (
     <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
       {patterns.map((s, i) => (
         <Reveal key={s.slug} delay={i * 60}>
-          <CaseStudyCard study={s} variant={variant} />
+          <CaseStudyCard study={s} />
         </Reveal>
       ))}
     </div>
@@ -158,7 +156,7 @@ export function PatternsGrid({ variant }: { variant: VariantId }) {
 }
 
 /** One organisation, in full. Periods and roles render only when verified. */
-export function OrganisationDetail({ entry, variant }: { entry: ExperienceEntry; variant: VariantId }) {
+export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
   const studies = resolveCaseStudies(entry.relatedCaseStudies);
   const pending = entry.achievements.length === 0;
   return (
@@ -227,7 +225,7 @@ export function OrganisationDetail({ entry, variant }: { entry: ExperienceEntry;
             {studies.length ? (
               <div className="mt-6 flex flex-col gap-2">
                 {studies.map((s) => (
-                  <ArrowLink key={s.slug} href={caseStudyHref(variant, s)}>
+                  <ArrowLink key={s.slug} href={caseStudyHref(s)}>
                     Case study: {s.title}
                   </ArrowLink>
                 ))}

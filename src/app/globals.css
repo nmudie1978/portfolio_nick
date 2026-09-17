@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────────────────────────────
-   Design tokens
-   A warm graphite ground (not pure black), paper-toned type, and two
-   restrained accents: copper for fulfilment / action, and a cool "signal"
-   tone reserved for assurance / runtime feedback. Everything else is
-   achieved through typography, spacing and hairline rules.
+   Design tokens — "Ocean Depth"
+   A white body with deep navy-teal hero and section bands. Semantic names:
+   `ink` is the ground, `paper` the type, `copper` the primary accent (teal
+   here; the name is kept for compatibility with the utilities) and
+   `signal` a secondary tone for assurance / runtime feedback.
    ────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-ink: #131416;
-  --color-ink-2: #191b1e;
-  --color-ink-3: #1f2226;
-  --color-line: #2a2d33;
-  --color-line-strong: #3a3e46;
+  --color-ink: #f7fafb;
+  --color-ink-2: #eaf1f3;
+  --color-ink-3: #dde7ea;
+  --color-line: #d0dce0;
+  --color-line-strong: #afc2c9;
 
-  --color-paper: #ece9e2;
-  --color-paper-2: #b4b1aa;
-  --color-paper-3: #8e8c87;
+  --color-paper: #07263a;
+  --color-paper-2: #365463;
+  --color-paper-3: #6a8391;
 
-  --color-copper: #c98f5d;
-  --color-copper-soft: rgba(201, 143, 93, 0.14);
-  --color-signal: #8fb5c4;
-  --color-signal-soft: rgba(143, 181, 196, 0.14);
+  --color-copper: #0e7c86;
+  --color-copper-soft: rgba(14, 124, 134, 0.12);
+  --color-signal: #2b5a8c;
+  --color-signal-soft: rgba(43, 90, 140, 0.16);
 
-  --font-display: var(--font-archivo);
+  --font-display: var(--font-instrument);
   --font-sans: var(--font-instrument);
   --font-mono: var(--font-plex-mono);
 
@@ -31,234 +31,14 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --measure: 62ch;
 }
 
-/* ──────────────────────────────────────────────────────────────────────
-   Variants
-   Each review variant redefines the same semantic tokens, so shared
-   components (content blocks, diagrams, detail pages) render correctly in
-   all of them. `--color-copper` is the primary accent in every variant;
-   the name is kept for compatibility with existing utilities.
-   ────────────────────────────────────────────────────────────────────── */
-
-/* A · Drafting Room — the existing graphite / copper identity, refined. */
-[data-variant="a"] {
-  color-scheme: dark;
-}
-
-/* B · Executive Ledger — deep navy, ivory type, brass accent, serif display. */
-[data-variant="b"] {
-  color-scheme: dark;
-  --color-ink: #0a0e1a;
-  --color-ink-2: #0f1424;
-  --color-ink-3: #151b2e;
-  --color-line: #222a40;
-  --color-line-strong: #34405c;
-  --color-paper: #efe9dc;
-  --color-paper-2: #b8b2a5;
-  --color-paper-3: #877f70;
-  --color-copper: #cfa964;
-  --color-copper-soft: rgba(207, 169, 100, 0.14);
-  --color-signal: #8fb0c4;
-  --color-signal-soft: rgba(143, 176, 196, 0.14);
-  --font-display: var(--font-newsreader);
-}
-[data-variant="b"] .t-display,
-[data-variant="b"] .t-h1,
-[data-variant="b"] .t-h2,
-[data-variant="b"] .t-h3 {
-  font-stretch: 100%;
-  font-weight: 400;
-  letter-spacing: -0.012em;
-}
-[data-variant="b"] .t-display { font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: 1.0; }
-[data-variant="b"] .t-h1 { font-size: clamp(2.3rem, 4.6vw, 3.8rem); }
-[data-variant="b"] .t-h2 { font-size: clamp(1.75rem, 3vw, 2.6rem); }
-[data-variant="b"] .t-h3 { font-size: clamp(1.3rem, 1.7vw, 1.6rem); letter-spacing: 0; }
-
-/* C · Marine Foam — light, teal accent, Manrope. */
-[data-variant="c"] {
-  color-scheme: light;
-  --color-ink: #f7faf8;
-  --color-ink-2: #eef4f1;
-  --color-ink-3: #e2ece8;
-  --color-line: #d2dfda;
-  --color-line-strong: #b4c9c2;
-  --color-paper: #0b2f33;
-  --color-paper-2: #3b5c5f;
-  --color-paper-3: #6d8a8c;
-  --color-copper: #0f5c63;
-  --color-copper-soft: rgba(15, 92, 99, 0.12);
-  --color-signal: #2f8f99;
-  --color-signal-soft: rgba(63, 158, 168, 0.16);
-  --font-display: var(--font-manrope);
-  --font-sans: var(--font-manrope);
-}
-[data-variant="c"] .t-display,
-[data-variant="c"] .t-h1,
-[data-variant="c"] .t-h2,
-[data-variant="c"] .t-h3 {
-  font-stretch: 100%;
-  font-weight: 600;
-}
-[data-variant="c"] .t-display { letter-spacing: -0.04em; }
-[data-variant="c"] ::selection { background: var(--color-copper); color: #ffffff; }
-[data-variant="c"] .drafting-grid {
-  background-image:
-    linear-gradient(to right, rgba(11, 47, 51, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(11, 47, 51, 0.06) 1px, transparent 1px);
-}
-
-/* D · Grid Glow — white, fine grid, lavender glow; violet accent. */
-[data-variant="d"] {
-  color-scheme: light;
-  --color-ink: #ffffff;
-  --color-ink-2: #f6f5fb;
-  --color-ink-3: #ecebf5;
-  --color-line: #e4e2ef;
-  --color-line-strong: #cbc7e0;
-  --color-paper: #17142e;
-  --color-paper-2: #4a4766;
-  --color-paper-3: #7b7896;
-  --color-copper: #4f3ec0;
-  --color-copper-soft: rgba(79, 62, 192, 0.12);
-  --color-signal: #7c6fd6;
-  --color-signal-soft: rgba(124, 111, 214, 0.16);
-  --font-display: var(--font-manrope);
-  --font-sans: var(--font-instrument);
-}
-
-/* E · Slate Mist — cool grey-blue, steel accent, serif display. */
-[data-variant="e"] {
-  color-scheme: light;
-  --color-ink: #f6f8fa;
-  --color-ink-2: #eceff3;
-  --color-ink-3: #dfe4ea;
-  --color-line: #d3dae2;
-  --color-line-strong: #b5c0cc;
-  --color-paper: #10243a;
-  --color-paper-2: #3f5266;
-  --color-paper-3: #6f8094;
-  --color-copper: #1f4e79;
-  --color-copper-soft: rgba(31, 78, 121, 0.12);
-  --color-signal: #4b7fb0;
-  --color-signal-soft: rgba(75, 127, 176, 0.16);
-  --font-display: var(--font-newsreader);
-  --font-sans: var(--font-instrument);
-}
-[data-variant="e"] .t-display,
-[data-variant="e"] .t-h1,
-[data-variant="e"] .t-h2,
-[data-variant="e"] .t-h3 {
-  font-stretch: 100%;
-  font-weight: 400;
-  letter-spacing: -0.012em;
-}
-[data-variant="e"] .t-display { font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: 1.0; }
-[data-variant="e"] .t-h3 { font-size: clamp(1.3rem, 1.7vw, 1.6rem); letter-spacing: 0; }
-
-/* F · Sand & Ink — warm paper, terracotta accent, Archivo display. */
-[data-variant="f"] {
-  color-scheme: light;
-  --color-ink: #f8f4ed;
-  --color-ink-2: #f0eadf;
-  --color-ink-3: #e6ded0;
-  --color-line: #ddd4c4;
-  --color-line-strong: #c4b7a2;
-  --color-paper: #2a2118;
-  --color-paper-2: #5a4d40;
-  --color-paper-3: #8a7c6c;
-  --color-copper: #9a4a24;
-  --color-copper-soft: rgba(154, 74, 36, 0.12);
-  --color-signal: #4c7f8c;
-  --color-signal-soft: rgba(76, 127, 140, 0.16);
-  --font-display: var(--font-archivo);
-  --font-sans: var(--font-instrument);
-}
-[data-variant="f"] .t-display,
-[data-variant="f"] .t-h1,
-[data-variant="f"] .t-h2,
-[data-variant="f"] .t-h3 {
-  font-weight: 500;
-}
-
-/* G · Ocean Depth — white body, deep navy-teal bands, teal accent. */
-[data-variant="g"] {
-  color-scheme: light;
-  --color-ink: #f7fafb;
-  --color-ink-2: #eaf1f3;
-  --color-ink-3: #dde7ea;
-  --color-line: #d0dce0;
-  --color-line-strong: #afc2c9;
-  --color-paper: #07263a;
-  --color-paper-2: #365463;
-  --color-paper-3: #6a8391;
-  --color-copper: #0e7c86;
-  --color-copper-soft: rgba(14, 124, 134, 0.12);
-  --color-signal: #2b5a8c;
-  --color-signal-soft: rgba(43, 90, 140, 0.16);
-  --font-display: var(--font-instrument);
-  --font-sans: var(--font-instrument);
-}
-[data-variant="g"] .t-display,
-[data-variant="g"] .t-h1,
-[data-variant="g"] .t-h2,
-[data-variant="g"] .t-h3 {
-  font-stretch: 100%;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-}
-
-/* H · Meadow — soft sage, green accent, Manrope. */
-[data-variant="h"] {
-  color-scheme: light;
-  --color-ink: #f7faf7;
-  --color-ink-2: #ecf3ec;
-  --color-ink-3: #dfeadf;
-  --color-line: #d2e0d2;
-  --color-line-strong: #b3c9b3;
-  --color-paper: #12301f;
-  --color-paper-2: #3e5a48;
-  --color-paper-3: #6e8676;
-  --color-copper: #2f6b4f;
-  --color-copper-soft: rgba(47, 107, 79, 0.12);
-  --color-signal: #5e8f6e;
-  --color-signal-soft: rgba(94, 143, 110, 0.16);
-  --font-display: var(--font-manrope);
-  --font-sans: var(--font-manrope);
-}
-[data-variant="d"] .t-display, [data-variant="d"] .t-h1, [data-variant="d"] .t-h2, [data-variant="d"] .t-h3,
-[data-variant="h"] .t-display, [data-variant="h"] .t-h1, [data-variant="h"] .t-h2, [data-variant="h"] .t-h3 {
-  font-stretch: 100%;
-  font-weight: 600;
-}
-[data-variant="d"] .t-display, [data-variant="h"] .t-display { letter-spacing: -0.04em; }
-
-/* The foam family shares label, selection and grid treatments. */
-[data-variant="d"] ::selection, [data-variant="e"] ::selection, [data-variant="f"] ::selection,
-[data-variant="g"] ::selection, [data-variant="h"] ::selection { background: var(--color-copper); color: #ffffff; }
-[data-variant="d"] .drafting-grid, [data-variant="e"] .drafting-grid, [data-variant="f"] .drafting-grid,
-[data-variant="g"] .drafting-grid, [data-variant="h"] .drafting-grid {
-  background-image:
-    linear-gradient(to right, rgba(20, 30, 40, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(20, 30, 40, 0.06) 1px, transparent 1px);
-}
-[data-variant="c"] .t-meta, [data-variant="d"] .t-meta, [data-variant="e"] .t-meta, [data-variant="f"] .t-meta,
-[data-variant="g"] .t-meta, [data-variant="h"] .t-meta {
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif; font-weight: 600; letter-spacing: 0.1em;
-}
-[data-variant="c"] .surface, [data-variant="f"] .surface, [data-variant="g"] .surface, [data-variant="h"] .surface { border-radius: 8px; }
-
-/* Variant scope fills the viewport so its ground colour is the page ground. */
-.variant-root {
+.site-root {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -278,7 +58,7 @@ body {
 
 ::selection {
   background: var(--color-copper);
-  color: var(--color-ink);
+  color: #ffffff;
 }
 
 /* Focus: one visible ring, everywhere, in the accent. */
@@ -306,32 +86,28 @@ body {
    ────────────────────────────────────────────────────────────────────── */
 @utility t-display {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 92%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(2.35rem, 5.4vw, 4.6rem);
   line-height: 1.02;
-  letter-spacing: -0.032em;
+  letter-spacing: -0.03em;
 }
 @utility t-h1 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 92%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(2.1rem, 4.2vw, 3.4rem);
   line-height: 1.05;
   letter-spacing: -0.028em;
 }
 @utility t-h2 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 94%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(1.6rem, 2.8vw, 2.35rem);
   line-height: 1.1;
   letter-spacing: -0.022em;
 }
 @utility t-h3 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 96%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(1.2rem, 1.6vw, 1.45rem);
   line-height: 1.2;
   letter-spacing: -0.012em;
@@ -351,10 +127,11 @@ body {
   line-height: 1.55;
 }
 @utility t-meta {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.7rem;
+  font-weight: 600;
   line-height: 1.4;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 @utility t-mono {
@@ -442,23 +219,14 @@ body {
 /* Faint drafting grid used behind the hero diagram */
 .drafting-grid {
   background-image:
-    linear-gradient(to right, rgba(236, 233, 226, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(236, 233, 226, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(20, 30, 40, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 30, 40, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Variant B: small-caps ledger label */
-.ledger-label {
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-copper);
-}
 
-/* Variant C: label and rounded surfaces */
-.foam-label {
+/* Section label, and the light version used on the navy bands */
+.section-label {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.74rem;
   font-weight: 700;
@@ -466,4 +234,5 @@ body {
   text-transform: uppercase;
   color: var(--color-copper);
 }
-.foam-label.on-foam { color: #bfeee4; }
+.section-label.on-ground { color: #bfeee4; }
+.surface { border-radius: 8px; }

@@ -17,51 +17,34 @@ npm run build    # static build; also runs type checking
 npm run lint
 ```
 
-## Review phase: three design variants
+## Design
 
-The site is currently published as eight visual variants of the same six-
-section profile (Profile · Experience · Achievements · Recognition · Skills ·
-Contact) so a direction can be chosen:
+"Ocean Depth": a white body with deep navy-teal hero and section bands
+(aurora glows over a faint grid), light type on the bands, teal accent,
+Instrument Sans throughout. Chosen from eight reviewed directions
+(see `docs/superpowers/specs/` for the design spec).
 
-| Route | Variant | Character |
-|---|---|---|
-| `/a` | Drafting Room | graphite, copper, Archivo — the evolved editorial identity |
-| `/b` | Executive Ledger | navy, ivory, brass, Newsreader serif — executive register |
-| `/c` | Marine Foam | light, teal → foam gradient, Manrope — calm, international |
-| `/d` | Grid Glow | white drafting grid + lavender glow (21st.dev `gradient-blur-bg`), violet, squared |
-| `/e` | Slate Mist | cool grey-blue mist, steel accent, Newsreader serif, portrait left |
-| `/f` | Sand & Ink | warm paper, terracotta accent, Archivo, centred hero |
-| `/g` | Ocean Depth | deep navy-teal bands with light type over a white body |
-| `/h` | Meadow | soft sage, green accent, portrait left, quick-fact cards |
-
-`/c`–`/h` are one implementation (`src/components/variants/foam`) driven by
-`foam/themes.tsx` (background, light/dark type, hero layout, quick-facts
-style, timeline, corner shape) plus a `[data-variant]` token block each.
-
-`/` is a `noindex` chooser. Each variant hosts the full site under its prefix;
-content, detail pages and diagrams are shared, only composition and tokens
-differ (`[data-variant]` blocks in `globals.css`). To promote the winner:
-move its `src/components/variants/<id>` components to the root routes, drop
-the `[variant]` segment and the other two folders, and remove the unused
-fonts from `layout.tsx`.
+Six sections: Profile (`/`) · Experience · Achievements · Recognition ·
+Skills · Contact. Case studies live under `/achievements/<slug>`;
+architecture patterns under `/recognition/patterns/<slug>`; viewpoints
+under `/recognition/<slug>`; the interactive matrix at
+`/recognition/architecture-model`.
 
 ## Structure
 
 ```
 src/
   app/
-    layout.tsx            fonts, metadata, JSON-LD
-    page.tsx              variant chooser (review phase)
-    [variant]/            the six sections + detail pages, per variant
+    layout.tsx            fonts, metadata, JSON-LD, header/footer
+    page.tsx              Profile (home)
+    experience/ achievements/ recognition/ skills/ contact/   sections + detail pages
     opengraph-image.tsx   generated social card
     sitemap.ts robots.ts  generated from content
-  variants/               registry (id → chrome + pages), path helpers, resolver
   components/
-    variants/a|b/         Header, Footer and the six section pages per dark variant
-    variants/foam/        the light family (c–h): one structure, themes.tsx per tone
+    site/                 Header, Footer, the six section pages, Timeline, primitives, theme
     shared/               NavShell, FooterShell, detail pages, content blocks
     layout/               Section, PageIntro, Container
-    ui/                   Portrait (placeholder until a photo is set), marine-foam,
+    ui/                   Portrait (placeholder until a photo is set),
                           Eyebrow, Tag, Links, Cards, Reveal, ContentBlocks
     architecture/         ArchitectureMatrix (interactive), FlowDiagram, StackDiagram
   content/                all site content, typed by content/types.ts
@@ -101,9 +84,10 @@ viewpoint.
 
 ## Design system
 
-Tokens live in `src/app/globals.css` (`@theme`): a warm graphite ground,
-paper-toned type, a copper accent for fulfilment/action and a cool "signal"
-tone reserved for assurance/runtime feedback. Typography roles are exposed
+Tokens live in `src/app/globals.css` (`@theme`): `ink` is the ground,
+`paper` the type, `copper` the primary (teal) accent and `signal` a secondary
+tone for assurance/runtime feedback. The navy-teal ground itself is
+`src/components/site/theme.tsx`. Typography roles are exposed
 as utilities (`t-display`, `t-h1`…`t-h3`, `t-lead`, `t-body`, `t-small`,
 `t-meta`, `t-mono`). Motion is limited to page entrance, reveal-on-scroll,
 diagram edge flow and hover states, all disabled under `prefers-reduced-motion`.

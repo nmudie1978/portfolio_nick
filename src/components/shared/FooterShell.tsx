@@ -4,19 +4,13 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PRIMARY_NAV, SECONDARY_NAV } from "@/content/site";
 import { person } from "@/content/person";
 import { cn } from "@/lib/cn";
-import { vhref } from "@/variants/paths";
-import type { VariantId } from "@/variants/types";
 
 /**
- * Footer shared by all variants. The brand block is supplied by the
- * variant; the site index and external links are identical everywhere.
+ * Site footer: brand block, site index and external links.
  */
-export function FooterShell({
-  variant,
-  brand,
+export function FooterShell({ brand,
   className,
 }: {
-  variant: VariantId;
   brand: React.ReactNode;
   className?: string;
 }) {
@@ -41,7 +35,7 @@ export function FooterShell({
             <ul className="flex flex-col gap-2">
               {[...PRIMARY_NAV, ...SECONDARY_NAV].map((item) => (
                 <li key={item.href}>
-                  <Link href={vhref(variant, item.href)} className="link-ul t-small text-paper-2">
+                  <Link href={item.href} className="link-ul t-small text-paper-2">
                     {item.label}
                   </Link>
                 </li>
@@ -72,9 +66,7 @@ export function FooterShell({
           <p className="t-meta text-paper-3">
             © {year} {person.name}
           </p>
-          <Link href="/" className="t-meta text-paper-3 transition-colors hover:text-paper">
-            Design variant {variant.toUpperCase()} · switch
-          </Link>
+          <p className="t-meta text-paper-3">Telecom architecture · BSS/OSS · Transformation</p>
         </div>
       </Container>
     </footer>

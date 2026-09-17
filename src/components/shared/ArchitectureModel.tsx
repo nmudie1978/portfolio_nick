@@ -9,15 +9,13 @@ import { ArrowLink, BackLink } from "@/components/ui/Links";
 import { Reveal } from "@/components/ui/Reveal";
 import { getCaseStudy } from "@/content/case-studies";
 import { caseStudyHref, insightHref } from "@/lib/routes";
-import { vhref } from "@/variants/paths";
-import type { VariantId } from "@/variants/types";
 
 /**
  * The interactive architecture model — part of the body of work under
  * Recognition. Layers down the side, lifecycle across the top, lenses to
  * read it five ways.
  */
-export function ArchitectureModel({ variant }: { variant: VariantId }) {
+export function ArchitectureModel() {
   const catalogPattern = getCaseStudy("catalog-driven-bss-oss");
   return (
     <PageTransition>
@@ -25,7 +23,7 @@ export function ArchitectureModel({ variant }: { variant: VariantId }) {
         <Container>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-3">
-              <BackLink href={vhref(variant, "/recognition")}>Recognition</BackLink>
+              <BackLink href={"/recognition"}>Recognition</BackLink>
             </div>
             <div className="md:col-span-9">
               <Eyebrow as="p" tone="copper">
@@ -63,7 +61,7 @@ export function ArchitectureModel({ variant }: { variant: VariantId }) {
               { label: "Resource", note: "What is configured — logical and physical network resources" },
             ]}
           />
-          <ArrowLink href={insightHref(variant, "product-service-resource")}>
+          <ArrowLink href={insightHref("product-service-resource")}>
             The difference between product, service and resource
           </ArrowLink>
         </Reveal>
@@ -90,11 +88,11 @@ export function ArchitectureModel({ variant }: { variant: VariantId }) {
             ]}
           />
           <div className="flex flex-col gap-2">
-            <ArrowLink href={insightHref(variant, "order-decomposition-boundary")}>
+            <ArrowLink href={insightHref("order-decomposition-boundary")}>
               Order decomposition as an architectural boundary
             </ArrowLink>
             {catalogPattern ? (
-              <ArrowLink href={caseStudyHref(variant, catalogPattern)}>Pattern: catalog-driven BSS/OSS</ArrowLink>
+              <ArrowLink href={caseStudyHref(catalogPattern)}>Pattern: catalog-driven BSS/OSS</ArrowLink>
             ) : null}
           </div>
         </Reveal>

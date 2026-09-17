@@ -9,11 +9,9 @@ import { person } from "@/content/person";
 import type { Insight } from "@/content/types";
 import { resolveCaseStudies, resolveInsights } from "@/lib/content";
 import { insightHref } from "@/lib/routes";
-import { vhref } from "@/variants/paths";
-import type { VariantId } from "@/variants/types";
 
 /** A single viewpoint, shared by every variant. Reached from Recognition. */
-export function InsightDetail({ insight, variant }: { insight: Insight; variant: VariantId }) {
+export function InsightDetail({ insight }: { insight: Insight; }) {
   const studies = resolveCaseStudies(insight.relatedCaseStudies);
   const related = resolveInsights(insight.relatedInsights);
   const index = insights.findIndex((i) => i.slug === insight.slug);
@@ -26,7 +24,7 @@ export function InsightDetail({ insight, variant }: { insight: Insight; variant:
           <Container>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-3">
-                <BackLink href={vhref(variant, "/recognition")}>Recognition</BackLink>
+                <BackLink href={"/recognition"}>Recognition</BackLink>
               </div>
               <div className="md:col-span-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
@@ -70,10 +68,10 @@ export function InsightDetail({ insight, variant }: { insight: Insight; variant:
                 <div className="md:col-span-9">
                   <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                     {studies.map((s) => (
-                      <CaseStudyCard key={s.slug} study={s} variant={variant} />
+                      <CaseStudyCard key={s.slug} study={s} />
                     ))}
                     {related.map((r) => (
-                      <InsightCard key={r.slug} insight={r} variant={variant} />
+                      <InsightCard key={r.slug} insight={r} />
                     ))}
                   </div>
                 </div>
@@ -89,7 +87,7 @@ export function InsightDetail({ insight, variant }: { insight: Insight; variant:
                 <Eyebrow as="p">Next</Eyebrow>
               </div>
               <div className="md:col-span-9">
-                <ArrowLink href={insightHref(variant, next.slug)} tone="copper">
+                <ArrowLink href={insightHref(next.slug)} tone="copper">
                   {next.title}
                 </ArrowLink>
               </div>

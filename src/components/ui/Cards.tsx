@@ -3,7 +3,6 @@ import type { CaseStudy, Insight } from "@/content/types";
 import { Eyebrow } from "./Eyebrow";
 import { cn } from "@/lib/cn";
 import { caseStudyHref, insightHref } from "@/lib/routes";
-import type { VariantId } from "@/variants/types";
 
 /**
  * Editorial cards. They are deliberately flat — a hairline top rule, a
@@ -13,16 +12,14 @@ import type { VariantId } from "@/variants/types";
 
 export function CaseStudyCard({
   study,
-  variant,
   large = false,
 }: {
   study: CaseStudy;
-  variant: VariantId;
   large?: boolean;
 }) {
   return (
     <Link
-      href={caseStudyHref(variant, study)}
+      href={caseStudyHref(study)}
       className={cn(
         "group flex h-full flex-col border-t rule pt-4 transition-colors hover:border-copper",
         large && "md:pt-6",
@@ -47,16 +44,14 @@ export function CaseStudyCard({
 
 export function InsightCard({
   insight,
-  variant,
   index,
 }: {
   insight: Insight;
-  variant: VariantId;
   index?: number;
 }) {
   return (
     <Link
-      href={insightHref(variant, insight.slug)}
+      href={insightHref(insight.slug)}
       className="group flex h-full flex-col border-t rule pt-4 transition-colors hover:border-copper"
     >
       <div className="mb-3 flex items-center justify-between gap-3">

@@ -16,12 +16,12 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 64,
-          background: "#131416",
-          color: "#ECE9E2",
+          background: "linear-gradient(180deg, #06202f 0%, #082c3f 100%)",
+          color: "#F7FAFB",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#8E8C87", letterSpacing: 3 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#BFEEE4", letterSpacing: 3 }}>
           <span>NICK MUDIE</span>
           <span>TELECOM ARCHITECTURE · BSS/OSS · TRANSFORMATION</span>
         </div>
@@ -29,16 +29,16 @@ export default function Image() {
           <div style={{ fontSize: 60, lineHeight: 1.05, letterSpacing: -2, maxWidth: 1000 }}>
             25+ years designing, transforming and operating telecom technology.
           </div>
-          <div style={{ fontSize: 26, color: "#B4B1AA", maxWidth: 900, lineHeight: 1.35 }}>
+          <div style={{ fontSize: 26, color: "#C9D9E0", maxWidth: 900, lineHeight: 1.35 }}>
             {SITE_DESCRIPTION}
           </div>
         </div>
-        <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 20, color: "#C98F5D", letterSpacing: 3 }}>
-          <span>OPERATIONS</span><span style={{ color: "#8E8C87" }}>→</span>
-          <span>ASSURANCE</span><span style={{ color: "#8E8C87" }}>→</span>
-          <span>ARCHITECTURE</span><span style={{ color: "#8E8C87" }}>→</span>
-          <span>BSS/OSS</span><span style={{ color: "#8E8C87" }}>→</span>
-          <span>TRANSFORMATION</span><span style={{ color: "#8E8C87" }}>→</span>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 20, color: "#5FD0D8", letterSpacing: 3 }}>
+          <span>OPERATIONS</span><span style={{ color: "#7FA0AE" }}>→</span>
+          <span>ASSURANCE</span><span style={{ color: "#7FA0AE" }}>→</span>
+          <span>ARCHITECTURE</span><span style={{ color: "#7FA0AE" }}>→</span>
+          <span>BSS/OSS</span><span style={{ color: "#7FA0AE" }}>→</span>
+          <span>TRANSFORMATION</span><span style={{ color: "#7FA0AE" }}>→</span>
           <span>AI</span>
         </div>
       </div>
