@@ -9,13 +9,13 @@ export function Experience() {
       <PageHeader
         label="Experience"
         title="A career that moved from the network up."
-        lead="Twenty-five years across Europe's leading telcos — from OSS engineering at UPC through operations, service assurance and hybrid cloud at Telia to leading catalog-driven BSS/OSS transformation. The organisations, and the roles held at each, from the beginning."
+        lead="Twenty-five years across Europe's leading telcos — from OSS engineering at UPC through operations, service assurance and hybrid cloud at Telia to leading catalog-driven BSS/OSS transformation. The organisations, and the roles held at each."
       />
       <PageSection
         id="organisations"
-        label="2001 to today"
+        label="Today back to 2001"
         title="Where the work was done."
-        intro={`Across ${environments.join(", ").toLowerCase()}. Earliest first.`}
+        intro={`Across ${environments.join(", ").toLowerCase()}. Most recent first.`}
       >
         <SpineTimeline entries={experience} />
       </PageSection>

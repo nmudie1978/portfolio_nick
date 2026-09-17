@@ -8,8 +8,8 @@ import { caseStudyHref } from "@/lib/routes";
 import { cn } from "@/lib/cn";
 
 /**
- * The career in chronological order: one organisation per block, its roles
- * on a hairline spine, earliest first. The organisation column carries what
+ * The career most recent first: one organisation per block, its roles on a
+ * hairline spine, latest role at the top. The organisation column carries what
  * is true of the whole tenure — span, base, context, technologies and the
  * engagement write-ups; the spine carries what each role delivered.
  */
@@ -19,16 +19,16 @@ function startYear(period: string | null | undefined): number | null {
   return m ? Number(m[0]) : null;
 }
 
-function chronological(entries: ExperienceEntry[]) {
+function mostRecentFirst(entries: ExperienceEntry[]) {
   const withYear = entries.map((entry) => {
     const roles = [...(entry.roles ?? [])].sort(
-      (a, b) => (startYear(a.period) ?? Infinity) - (startYear(b.period) ?? Infinity),
+      (a, b) => (startYear(b.period) ?? -Infinity) - (startYear(a.period) ?? -Infinity),
     );
-    const first = startYear(roles[0]?.period) ?? startYear(entry.period);
-    return { entry, roles, first };
+    const latest = startYear(roles[0]?.period) ?? startYear(entry.period);
+    return { entry, roles, latest };
   });
-  // Undated organisations (e.g. the current one with no start year) go last.
-  return withYear.sort((a, b) => (a.first ?? Infinity) - (b.first ?? Infinity));
+  // Undated organisations are the current one; they lead.
+  return withYear.sort((a, b) => (b.latest ?? Infinity) - (a.latest ?? Infinity));
 }
 
 function Role({ role }: { role: ExperienceRole }) {
@@ -57,7 +57,7 @@ function Role({ role }: { role: ExperienceRole }) {
 }
 
 export function SpineTimeline({ entries }: { entries: ExperienceEntry[] }) {
-  const ordered = chronological(entries);
+  const ordered = mostRecentFirst(entries);
   return (
     <div className="flex flex-col divide-y rule border-y rule">
       {ordered.map(({ entry, roles }, i) => {
