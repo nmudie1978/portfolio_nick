@@ -316,3 +316,16 @@ body {
   text-transform: uppercase;
   color: var(--color-copper);
 }
+
+/* Variant C: label and rounded surfaces */
+.foam-label {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-copper);
+}
+.foam-label.on-foam { color: #bfeee4; }
+[data-variant="c"] .surface { border-radius: 8px; }
+[data-variant="c"] .t-meta { font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif; font-weight: 600; letter-spacing: 0.1em; }
