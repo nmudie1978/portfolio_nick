@@ -11,19 +11,20 @@ export function Recognition({ variant }: VariantProps) {
   return (
     <PageTransition>
       <FoamIntro
+        variant={variant}
         label="Recognition"
         title="Evidence of how I think and contribute."
         lead="Not awards. A substantial body of work built to explain and explore modern telecom architecture — the BSS/OSS Academy, architecture models and patterns, and the viewpoints behind them."
       />
-      <FoamSection id="academy" label="BSS/OSS Academy" title="An independent, vendor-neutral body of work.">
+      <FoamSection variant={variant} id="academy" label="BSS/OSS Academy" title="An independent, vendor-neutral body of work.">
         <Reveal>
           <AcademyOverview />
         </Reveal>
       </FoamSection>
-      <FoamSection id="work" label="Inside the Academy" title="Simulator, challenges, frameworks, models, modules." tone="tint">
+      <FoamSection variant={variant} id="work" label="Inside the Academy" title="Simulator, challenges, frameworks, models, modules." tone="tint">
         <AcademyWorkGrid />
       </FoamSection>
-      <FoamSection
+      <FoamSection variant={variant}
         id="model"
         label="Architecture model"
         title="One matrix, five ways to read it."
@@ -34,10 +35,10 @@ export function Recognition({ variant }: VariantProps) {
           <ArchitectureMatrix mode="ambient" initialLens="order" exploreHref={vhref(variant, "/recognition/architecture-model")} />
         </Reveal>
       </FoamSection>
-      <FoamSection id="patterns" label="Architecture patterns" title="Patterns drawn from repeated experience." tone="tint">
+      <FoamSection variant={variant} id="patterns" label="Architecture patterns" title="Patterns drawn from repeated experience." tone="tint">
         <PatternsGrid variant={variant} />
       </FoamSection>
-      <FoamSection
+      <FoamSection variant={variant}
         id="thinking"
         label="Selected thinking"
         title="Short viewpoints on telecom architecture."
@@ -45,7 +46,7 @@ export function Recognition({ variant }: VariantProps) {
       >
         <ThinkingIndex variant={variant} />
       </FoamSection>
-      <FoamSection id="research" label="Current research" title="Where the architecture is still being worked out." tone="tint">
+      <FoamSection variant={variant} id="research" label="Current research" title="Where the architecture is still being worked out." tone="tint">
         <FocusGrid />
       </FoamSection>
     </PageTransition>

@@ -10,11 +10,12 @@ export function Experience({ variant }: VariantProps) {
   return (
     <PageTransition>
       <FoamIntro
+        variant={variant}
         label="Experience"
         title="A career that moved from the network up."
         lead="Operations, service assurance, architecture, BSS/OSS, transformation, AI and modern telecom — a progression of responsibility, and the organisations where it was exercised. Roles and periods are shown only where confirmed."
       />
-      <FoamSection
+      <FoamSection variant={variant}
         id="progression"
         label="Progression"
         title="Six stages, one direction."
@@ -22,7 +23,7 @@ export function Experience({ variant }: VariantProps) {
       >
         <FoamTimeline variant={variant} detailed />
       </FoamSection>
-      <FoamSection
+      <FoamSection variant={variant}
         id="organisations"
         label="Organisations"
         title="Where the work was done."

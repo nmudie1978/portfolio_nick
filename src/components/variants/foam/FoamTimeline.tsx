@@ -4,14 +4,18 @@ import { journeyWithEvidence } from "@/lib/journey";
 import { cn } from "@/lib/cn";
 import { vhref } from "@/variants/paths";
 import type { VariantId } from "@/variants/types";
+import { foamTheme } from "./themes";
+import { shape } from "./Foam";
 
 /**
- * Stepped timeline: on large screens a rising staircase of six steps along
- * a teal line; on small screens a vertical list. Organisations are attached
+ * Timeline: on large screens six steps along a line — a rising staircase
+ * or a flat rail, per theme; on small screens a vertical list. Organisations are attached
  * to the stages they evidence; no dates are implied.
  */
 export function FoamTimeline({ variant, detailed = false }: { variant: VariantId; detailed?: boolean }) {
   const stages = journeyWithEvidence();
+  const stepped = foamTheme(variant).timeline === "stepped";
+  const s = shape(variant);
   return (
     <ol className="grid grid-cols-1 gap-y-2 lg:grid-cols-6 lg:gap-x-4">
       {stages.map(({ stage, index, organisations }) => {
@@ -23,7 +27,7 @@ export function FoamTimeline({ variant, detailed = false }: { variant: VariantId
                 <span className="mt-[6px] h-3 w-3 rounded-full border-2 border-copper bg-ink" aria-hidden="true" />
                 {!last ? <span className="mt-1 w-px flex-1 bg-line-strong" aria-hidden="true" /> : null}
               </div>
-              <div className="hidden lg:block" aria-hidden="true" style={{ paddingTop: `${(5 - index) * 14}px` }}>
+              <div className="hidden lg:block" aria-hidden="true" style={{ paddingTop: stepped ? `${(5 - index) * 14}px` : 0 }}>
                 <div className="relative h-4">
                   <span className={cn("absolute left-0 top-1/2 h-[2px] w-[calc(100%+1rem)] bg-line-strong", last && "w-full")} />
                   <span className="absolute left-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border-2 border-copper bg-ink" />
@@ -41,7 +45,7 @@ export function FoamTimeline({ variant, detailed = false }: { variant: VariantId
                       <li key={o.organisation}>
                         <Link
                           href={vhref(variant, `/experience#${o.organisation.toLowerCase()}`)}
-                          className="inline-block rounded-full bg-copper-soft px-3 py-1 text-[0.78rem] font-semibold text-copper transition-colors hover:bg-copper hover:text-white"
+                          className={cn("inline-block bg-copper-soft px-3 py-1 text-[0.78rem] font-semibold text-copper transition-colors hover:bg-copper hover:text-white", s.chip)}
                         >
                           {o.organisation}
                         </Link>

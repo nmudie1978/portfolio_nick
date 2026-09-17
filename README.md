@@ -19,7 +19,7 @@ npm run lint
 
 ## Review phase: three design variants
 
-The site is currently published as three visual variants of the same six-
+The site is currently published as eight visual variants of the same six-
 section profile (Profile · Experience · Achievements · Recognition · Skills ·
 Contact) so a direction can be chosen:
 
@@ -28,6 +28,15 @@ Contact) so a direction can be chosen:
 | `/a` | Drafting Room | graphite, copper, Archivo — the evolved editorial identity |
 | `/b` | Executive Ledger | navy, ivory, brass, Newsreader serif — executive register |
 | `/c` | Marine Foam | light, teal → foam gradient, Manrope — calm, international |
+| `/d` | Grid Glow | white drafting grid + lavender glow (21st.dev `gradient-blur-bg`), violet, squared |
+| `/e` | Slate Mist | cool grey-blue mist, steel accent, Newsreader serif, portrait left |
+| `/f` | Sand & Ink | warm paper, terracotta accent, Archivo, centred hero |
+| `/g` | Ocean Depth | deep navy-teal bands with light type over a white body |
+| `/h` | Meadow | soft sage, green accent, portrait left, quick-fact cards |
+
+`/c`–`/h` are one implementation (`src/components/variants/foam`) driven by
+`foam/themes.tsx` (background, light/dark type, hero layout, quick-facts
+style, timeline, corner shape) plus a `[data-variant]` token block each.
 
 `/` is a `noindex` chooser. Each variant hosts the full site under its prefix;
 content, detail pages and diagrams are shared, only composition and tokens
@@ -48,7 +57,8 @@ src/
     sitemap.ts robots.ts  generated from content
   variants/               registry (id → chrome + pages), path helpers, resolver
   components/
-    variants/a|b|c/       Header, Footer and the six section pages per variant
+    variants/a|b/         Header, Footer and the six section pages per dark variant
+    variants/foam/        the light family (c–h): one structure, themes.tsx per tone
     shared/               NavShell, FooterShell, detail pages, content blocks
     layout/               Section, PageIntro, Container
     ui/                   Portrait (placeholder until a photo is set), marine-foam,

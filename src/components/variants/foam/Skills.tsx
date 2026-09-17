@@ -2,12 +2,16 @@ import { Container } from "@/components/layout/Container";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Reveal } from "@/components/ui/Reveal";
 import { skillDomains } from "@/content/skills";
-import { FoamIntro } from "./Foam";
+import type { VariantProps } from "@/variants/types";
+import { FoamIntro, shape } from "./Foam";
+import { cn } from "@/lib/cn";
 
-export function Skills() {
+export function Skills({ variant }: VariantProps) {
+  const sh = shape(variant);
   return (
     <PageTransition>
       <FoamIntro
+        variant={variant}
         label="Skills"
         title="Architectural breadth, operational depth."
         lead="Five professional domains rather than a keyword cloud. Every item is backed by work described elsewhere on this site."
@@ -26,7 +30,7 @@ export function Skills() {
                   <div className="md:col-span-8">
                     <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {d.skills.map((s) => (
-                        <li key={s} className="t-small flex items-center gap-3 rounded-lg bg-ink-2 px-4 py-3 font-medium text-paper">
+                        <li key={s} className={cn("t-small flex items-center gap-3 bg-ink-2 px-4 py-3 font-medium text-paper", sh.tile)}>
                           <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-copper" />
                           {s}
                         </li>

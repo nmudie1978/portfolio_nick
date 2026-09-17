@@ -6,13 +6,16 @@ import { ArrowLink } from "@/components/ui/Links";
 import { achievements } from "@/content/achievements";
 import { getCaseStudy } from "@/content/case-studies";
 import { caseStudyHref } from "@/lib/routes";
-import { FoamIntro } from "./Foam";
+import { FoamIntro, shape } from "./Foam";
+import { cn } from "@/lib/cn";
 import type { VariantProps } from "@/variants/types";
 
 export function Achievements({ variant }: VariantProps) {
+  const s = shape(variant);
   return (
     <PageTransition>
       <FoamIntro
+        variant={variant}
         label="Achievements"
         title="What was actually delivered."
         lead="Six pieces of work inside live operators — firsts, greenfield programmes and modernisations. The wording keeps the role as it was; the depth is in the case studies."
@@ -44,9 +47,9 @@ export function Achievements({ variant }: VariantProps) {
                         <div>
                           <p className="foam-label">Scope</p>
                           <ul className="mt-3 flex flex-wrap gap-2">
-                            {a.scope.map((s) => (
-                              <li key={s} className="rounded-full bg-ink-2 px-3 py-1 text-[0.85rem] font-medium text-paper">
-                                {s}
+                            {a.scope.map((item) => (
+                              <li key={item} className={cn("bg-ink-2 px-3 py-1 text-[0.85rem] font-medium text-paper", s.chip)}>
+                                {item}
                               </li>
                             ))}
                           </ul>

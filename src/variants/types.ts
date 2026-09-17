@@ -1,8 +1,8 @@
 import type { ComponentType } from "react";
 
-export type VariantId = "a" | "b" | "c";
+export type VariantId = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
 
-export const VARIANT_IDS: VariantId[] = ["a", "b", "c"];
+export const VARIANT_IDS: VariantId[] = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
 export function isVariantId(v: string): v is VariantId {
   return (VARIANT_IDS as string[]).includes(v);

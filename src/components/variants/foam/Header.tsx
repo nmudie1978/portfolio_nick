@@ -1,8 +1,10 @@
 import { NavShell } from "@/components/shared/NavShell";
 import { person } from "@/content/person";
 import type { VariantProps } from "@/variants/types";
+import { shape } from "./Foam";
 
 export function Header({ variant }: VariantProps) {
+  const s = shape(variant);
   return (
     <NavShell
       variant={variant}
@@ -20,7 +22,7 @@ export function Header({ variant }: VariantProps) {
         cta: {
           label: "Contact",
           className:
-            "inline-flex items-center rounded-full bg-copper px-4 py-2 text-[0.85rem] font-semibold text-white transition-colors hover:bg-paper",
+            `inline-flex items-center ${s.button} bg-copper px-4 py-2 text-[0.85rem] font-semibold text-white transition-colors hover:bg-paper`,
         },
         toggle: "text-[0.85rem] font-semibold uppercase tracking-[0.1em] text-paper",
         panel: "bg-ink",
