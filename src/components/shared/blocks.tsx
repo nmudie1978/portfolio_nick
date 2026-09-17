@@ -135,6 +135,35 @@ export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
         </Eyebrow>
         <p className="t-body measure text-paper-2">{entry.context}</p>
 
+        {entry.roles?.length ? (
+          <>
+            <Eyebrow as="p" className="mb-3 mt-6">
+              Roles
+            </Eyebrow>
+            <ol className="flex flex-col divide-y rule border-y rule">
+              {entry.roles.map((r) => (
+                <li key={`${r.title}-${r.period}`} className="grid grid-cols-1 gap-2 py-4 md:grid-cols-12 md:gap-6">
+                  <div className="md:col-span-4">
+                    <p className="t-small font-medium text-paper">{r.title}</p>
+                    <p className="t-meta mt-1 text-paper-3">
+                      {r.period}
+                      {r.unit ? ` · ${r.unit}` : null}
+                    </p>
+                  </div>
+                  <ul className="flex flex-col gap-1.5 md:col-span-8">
+                    {r.highlights.map((h) => (
+                      <li key={h} className="t-small flex gap-3 text-paper-2">
+                        <span className="mt-[0.7em] h-px w-3 shrink-0 bg-copper" aria-hidden="true" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </>
+        ) : null}
+
         {!pending ? (
           <>
             {entry.achievements.length ? (

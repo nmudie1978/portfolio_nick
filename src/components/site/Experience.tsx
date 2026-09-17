@@ -10,7 +10,7 @@ export function Experience() {
       <PageHeader
         label="Experience"
         title="A career that moved from the network up."
-        lead="Operations, service assurance, architecture, BSS/OSS, transformation, AI and modern telecom — a progression of responsibility, and the organisations where it was exercised. Roles and periods are shown only where confirmed."
+        lead="Twenty-five years across Europe's leading telcos — from OSS engineering at UPC through operations, service assurance and hybrid cloud at Telia to leading catalog-driven BSS/OSS transformation. The organisations, and the roles held at each."
       />
       <PageSection
         id="organisations"

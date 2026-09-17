@@ -73,12 +73,24 @@ export interface ExpertiseArea {
   relatedCaseStudies?: Slug[];
 }
 
+/** One role held at an organisation, as stated on the CV. */
+export interface ExperienceRole {
+  title: string;
+  period: string;
+  /** Business unit or country where it differs from the organisation, e.g. "Telia Sweden". */
+  unit?: string;
+  /** What the role delivered, in CV wording. */
+  highlights: string[];
+}
+
 export interface ExperienceEntry {
   organisation: string;
   /** Verified role title. Null until confirmed — never invented. */
   role: string | null;
   /** Verified period. Null until confirmed — never invented. */
   period: string | null;
+  /** Individual roles held, most recent first. Rendered when present. */
+  roles?: ExperienceRole[];
   /** Where the role was based. */
   location: string;
   /** What kind of environment this was. */
