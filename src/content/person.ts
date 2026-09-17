@@ -43,7 +43,7 @@ export const person: Person = {
     { value: "25+ years", label: "Telecom experience" },
     { value: "Five operators", label: "Telia · Telenor · Vodafone · UPC · Marlink" },
     { value: "BSS / OSS", label: "Architecture & transformation" },
-    { value: "AI / Modern telecom", label: "Current focus" },
+    { value: "IT Operations, Infrastructure & Service Assurance", label: "Operational background" },
   ],
   // Photograph under public/. Set to null to render the placeholder frame.
   portrait: "/portrait/nick-mudie.jpg",
