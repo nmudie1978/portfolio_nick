@@ -39,9 +39,8 @@ export const person: Person = {
     { value: "BSS / OSS", label: "Architecture & transformation" },
     { value: "AI / Modern telecom", label: "Current focus" },
   ],
-  // Set to a public path (e.g. "/portrait/nick-mudie.jpg") once a real
-  // photograph is added under public/. Null renders the placeholder frame.
-  portrait: null,
+  // Photograph under public/. Set to null to render the placeholder frame.
+  portrait: "/portrait/nick-mudie.jpg",
   links: {
     linkedin: "https://www.linkedin.com/in/nick-mudie-5a171b99",
     academy: "https://bssoss-academy.dev/",
