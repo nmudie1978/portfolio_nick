@@ -3,7 +3,6 @@ import { ArrowLink, ButtonLink, ExternalLink } from "@/components/ui/Links";
 import { TagList } from "@/components/ui/Tag";
 import { Reveal } from "@/components/ui/Reveal";
 import { person } from "@/content/person";
-import { caseStudies } from "@/content/case-studies";
 import type { ExperienceEntry } from "@/content/types";
 import { cn } from "@/lib/cn";
 import { resolveCaseStudies } from "@/lib/content";
@@ -23,7 +22,7 @@ export const ACADEMY_TOPICS: [string, string][] = [
   ["Service Assurance", "From alarms to services; observability and closed loops"],
   ["Transformation", "Greenfield, hybrid and brownfield patterns, anti-patterns and exit criteria"],
   ["AI in Telecom & AI Infrastructure", "Agentic operations, AI-native OSS and the GPU estate behind them"],
-  ["Modern Telecom Architecture", "Composable, catalog-driven, ODA-aligned designs"],
+  ["Telco Landscape", "Ongoing research mapping who is doing what, where, with whom and with which technology"],
 ];
 
 export const ACADEMY_WORK: [string, string][] = [
@@ -55,9 +54,11 @@ export function AcademyOverview({ compact = false }: { compact?: boolean }) {
           <ButtonLink href={person.links.academy} external>
             Visit the Academy
           </ButtonLink>
-          <ButtonLink href={person.links.telcoLandscape} external variant="secondary">
-            Telco Landscape
-          </ButtonLink>
+          {compact ? (
+            <ButtonLink href={person.links.telcoLandscape} external variant="secondary">
+              Telco Landscape
+            </ButtonLink>
+          ) : null}
         </div>
       </div>
       <div className="md:col-span-6">
@@ -92,26 +93,6 @@ export function AcademyWorkGrid({ className }: { className?: string }) {
             <span className="t-mono text-[0.66rem] text-paper-3">{String(i + 1).padStart(2, "0")}</span>
             <h3 className="t-h3 mt-2 text-paper">{t}</h3>
             <p className="t-small mt-2 text-paper-2">{d}</p>
-          </div>
-        </Reveal>
-      ))}
-    </ul>
-  );
-}
-
-/** Architecture patterns drawn from repeated experience — named and summarised, not expanded. */
-export function PatternsList() {
-  const patterns = caseStudies.filter((c) => c.kind === "pattern");
-  return (
-    <ul className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-      {patterns.map((s, i) => (
-        <Reveal key={s.slug} as="li" delay={i * 60}>
-          <div className="flex h-full flex-col border-t rule pt-4">
-            <Eyebrow as="span" tone="copper" className="mb-3">
-              {s.category}
-            </Eyebrow>
-            <h3 className="t-h3 text-paper">{s.title}</h3>
-            <p className="t-small mt-2 text-paper-2">{s.summary}</p>
           </div>
         </Reveal>
       ))}

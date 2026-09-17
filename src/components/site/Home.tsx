@@ -152,9 +152,6 @@ export function Home() {
           </Reveal>
           <Reveal className="lg:col-span-6" delay={80}>
             <ArchitectureMatrix mode="ambient" initialLens="order" />
-            <p className="t-small mt-4 text-paper-3">
-              The estate as I hold it in my head: layers down, lifecycle across.
-            </p>
           </Reveal>
         </div>
       </PageSection>

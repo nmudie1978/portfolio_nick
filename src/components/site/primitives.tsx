@@ -54,6 +54,7 @@ export function PageSection({ id,
   aside,
   children,
   tone = "paper",
+  wide = false,
   className,
 }: {
   id?: string;
@@ -63,6 +64,8 @@ export function PageSection({ id,
   aside?: React.ReactNode;
   children?: React.ReactNode;
   tone?: "paper" | "tint" | "band";
+  /** Let the title run the full container width instead of the 7/12 column. */
+  wide?: boolean;
   className?: string;
 }) {
   const hid = `${id ?? label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-title`;
@@ -91,16 +94,18 @@ export function PageSection({ id,
     >
       <Container>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-7">
+          <div className={wide ? "md:col-span-12" : "md:col-span-7"}>
             <p className="section-label">{label}</p>
-            <h2 id={hid} className="t-h2 mt-3 max-w-[20ch] text-paper">
+            <h2 id={hid} className={cn("t-h2 mt-3 text-paper", !wide && "max-w-[20ch]")}>
               {title}
             </h2>
           </div>
-          <div className="flex flex-col justify-end gap-4 md:col-span-5">
-            {intro ? <p className="t-body max-w-[46ch] text-paper-2">{intro}</p> : null}
-            {aside ? <div>{aside}</div> : null}
-          </div>
+          {intro || aside ? (
+            <div className={cn("flex flex-col justify-end gap-4", wide ? "md:col-span-12" : "md:col-span-5")}>
+              {intro ? <p className={cn("t-body text-paper-2", wide ? "max-w-[70ch]" : "max-w-[46ch]")}>{intro}</p> : null}
+              {aside ? <div>{aside}</div> : null}
+            </div>
+          ) : null}
         </div>
         {children ? <div className="mt-12 md:mt-14">{children}</div> : null}
       </Container>
@@ -113,11 +118,14 @@ export function PageHeader({ label,
   title,
   lead,
   children,
+  statement = false,
 }: {
   label: string;
   title: string;
   lead?: string;
   children?: React.ReactNode;
+  /** Render the title as a full-sentence statement at the h2 scale rather than a display headline. */
+  statement?: boolean;
 }) {
   const g = onGround();
   return (
@@ -125,7 +133,7 @@ export function PageHeader({ label,
       <Ground />
       <Container>
         <p className={g.label}>{label}</p>
-        <h1 className={cn("t-h1 mt-4", g.heading)}>{title}</h1>
+        <h1 className={cn(statement ? "t-h2 mt-4 max-w-[44ch]" : "t-h1 mt-4", g.heading)}>{title}</h1>
         {lead ? <p className={cn("t-lead mt-6", g.body)}>{lead}</p> : null}
         {children}
       </Container>
