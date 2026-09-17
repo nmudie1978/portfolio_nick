@@ -7,7 +7,6 @@ import { ArrowLink, ButtonLink } from "@/components/ui/Links";
 import { ArchitectureMatrix } from "@/components/architecture/ArchitectureMatrix";
 import { AcademyOverview } from "@/components/shared/blocks";
 import { Ground, GroundButton, PageSection, onGround, shape } from "./primitives";
-import { Timeline } from "./Timeline";
 import { THEME } from "./theme";
 import { person } from "@/content/person";
 import { achievements } from "@/content/achievements";
@@ -190,17 +189,6 @@ export function Home() {
             );
           })}
         </ol>
-      </PageSection>
-
-      {/* ── Career ────────────────────────────────────────────────────── */}
-      <PageSection
-        id="career"
-        label="Career progression"
-        title="From the network up."
-        intro="Not many telecom jobs — one direction: deep operational experience, then architecture, then transformation, then the technology now changing both."
-        aside={<ArrowLink href={"/experience"}>Full experience</ArrowLink>}
-      >
-        <Timeline />
       </PageSection>
 
       {/* ── Skills ────────────────────────────────────────────────────── */}
