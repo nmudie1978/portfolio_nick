@@ -39,7 +39,7 @@ export function Portrait({
           alt={`${person.name}, portrait`}
           fill
           priority={priority}
-          sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 220px, (min-width: 640px) 50vw, 100vw"
           className="object-cover object-[50%_30%]"
         />
       ) : (
