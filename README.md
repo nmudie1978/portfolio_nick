@@ -17,29 +17,54 @@ npm run build    # static build; also runs type checking
 npm run lint
 ```
 
+## Review phase: three design variants
+
+The site is currently published as three visual variants of the same six-
+section profile (Profile · Experience · Achievements · Recognition · Skills ·
+Contact) so a direction can be chosen:
+
+| Route | Variant | Character |
+|---|---|---|
+| `/a` | Drafting Room | graphite, copper, Archivo — the evolved editorial identity |
+| `/b` | Executive Ledger | navy, ivory, brass, Newsreader serif — executive register |
+| `/c` | Marine Foam | light, teal → foam gradient, Manrope — calm, international |
+
+`/` is a `noindex` chooser. Each variant hosts the full site under its prefix;
+content, detail pages and diagrams are shared, only composition and tokens
+differ (`[data-variant]` blocks in `globals.css`). To promote the winner:
+move its `src/components/variants/<id>` components to the root routes, drop
+the `[variant]` segment and the other two folders, and remove the unused
+fonts from `layout.tsx`.
+
 ## Structure
 
 ```
 src/
-  app/                    routes (one folder per page; [slug] for detail pages)
-    layout.tsx            fonts, metadata, JSON-LD, header/footer
+  app/
+    layout.tsx            fonts, metadata, JSON-LD
+    page.tsx              variant chooser (review phase)
+    [variant]/            the six sections + detail pages, per variant
     opengraph-image.tsx   generated social card
     sitemap.ts robots.ts  generated from content
+  variants/               registry (id → chrome + pages), path helpers, resolver
   components/
-    layout/               SiteHeader, SiteFooter, Section, PageIntro, Container
-    ui/                   Eyebrow, Tag, Links, Cards, Reveal, ContentBlocks
+    variants/a|b|c/       Header, Footer and the six section pages per variant
+    shared/               NavShell, FooterShell, detail pages, content blocks
+    layout/               Section, PageIntro, Container
+    ui/                   Portrait (placeholder until a photo is set), marine-foam,
+                          Eyebrow, Tag, Links, Cards, Reveal, ContentBlocks
     architecture/         ArchitectureMatrix (interactive), FlowDiagram, StackDiagram
-    home/                 Hero
   content/                all site content, typed by content/types.ts
-    person.ts             name, positioning, hero copy, links
-    expertise.ts          seven expertise areas
-    experience.ts         career progression + organisations
+    person.ts             name, positioning, bio, quick facts, portrait, links
+    achievements.ts       the six verified deliveries → case studies
+    skills.ts             five skill domains
+    experience.ts         journey stages + organisations (stages, not dates)
     case-studies.ts       case studies (engagements and patterns)
-    insights.ts           "Thinking" viewpoints
+    insights.ts           viewpoints ("Selected thinking" under Recognition)
     focus.ts              current focus areas
     architecture.ts       the matrix model: layers, columns, nodes, lenses
     site.ts               site name, URL, navigation, keywords
-  lib/                    metadata helper, content resolvers, cn()
+  lib/                    metadata, content resolvers, routes, journey, cn()
 ```
 
 ## Adding content
@@ -48,7 +73,10 @@ src/
   The route, sitemap entry, cards and related links are generated.
 - **Viewpoint** — append to `insights` in `src/content/insights.ts`.
 - **Experience** — edit `src/content/experience.ts`. `role` and `period` are
-  `null` until verified; they are only rendered when set.
+  `null` until verified and render as "To be confirmed" until set.
+- **Portrait** — add the photograph under `public/` and set `person.portrait`
+  to its path (e.g. `"/portrait/nick-mudie.jpg"`). The 4:5 frame is fixed, so
+  no layout change is needed.
 - **Links** — `src/content/person.ts` → `links`. `email` and `cv` are `null`
   until a public address / CV path is chosen; the site adapts.
 

@@ -176,7 +176,7 @@ export function Home({ variant }: VariantProps) {
             <FocusGrid limit={4} columns={2} />
           </div>
           <Reveal className="lg:col-span-6" delay={80}>
-            <ArchitectureMatrix mode="ambient" initialLens="assurance" />
+            <ArchitectureMatrix mode="ambient" initialLens="assurance" exploreHref={vhref(variant, "/recognition/architecture-model")} />
             <p className="t-small mt-4 text-paper-3">
               The model behind the work.{" "}
               <Link href={vhref(variant, "/recognition/architecture-model")} className="link-ul text-paper-2">

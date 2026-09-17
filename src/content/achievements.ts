@@ -67,7 +67,7 @@ export const achievements: Achievement[] = [
     scope: ["MPLS network expansion", "Two markets", "Mobile payments platform"],
     technologies: ["MPLS"],
     caseStudy: "vodafone-m-pesa-network",
-    stage: "Transformation",
+    stage: "Operations",
     significance:
       "A payments platform whose availability depended directly on the data network — delivery where every transaction is a network transaction.",
   },

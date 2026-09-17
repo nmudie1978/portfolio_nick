@@ -105,7 +105,7 @@ export function Home({ variant }: VariantProps) {
             </ul>
           </Reveal>
           <Reveal className="lg:col-span-6" delay={80}>
-            <ArchitectureMatrix mode="ambient" initialLens="order" />
+            <ArchitectureMatrix mode="ambient" initialLens="order" exploreHref={vhref(variant, "/recognition/architecture-model")} />
             <p className="t-small mt-4 text-paper-3">
               The estate as I hold it in my head: layers down, lifecycle across.{" "}
               <Link href={vhref(variant, "/recognition/architecture-model")} className="link-ul text-paper-2">

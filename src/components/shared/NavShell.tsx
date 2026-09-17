@@ -56,81 +56,111 @@ export function NavShell({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
-  const items = PRIMARY_NAV.map((i) => ({ ...i, href: vhref(variant, i.href) }));
-  const secondary = SECONDARY_NAV.map((i) => ({ ...i, href: vhref(variant, i.href) }));
+  const items = PRIMARY_NAV.map((i) => ({
+    ...i,
+    href: vhref(variant, i.href),
+  }));
+  const secondary = SECONDARY_NAV.map((i) => ({
+    ...i,
+    href: vhref(variant, i.href),
+  }));
   const active = (href: string) => isActivePath(pathname, href, variant);
   const contact = items.find((i) => i.label === "Contact");
-  const desktopItems = styles.cta ? items.filter((i) => i.label !== "Contact") : items;
+  const desktopItems = styles.cta
+    ? items.filter((i) => i.label !== "Contact")
+    : items;
 
   return (
-    <header className={cn("sticky top-0 z-40", styles.header)}>
+    // `backdrop-filter` must not sit on the <header> itself: it would become
+    // the containing block for the fixed mobile panel and clip it to the bar.
+    <header className="sticky top-0 z-40">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-paper focus:px-3 focus:py-2 focus:text-ink"
       >
         Skip to content
       </a>
-      <div className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12 md:h-[4.5rem]">
-        <Link href={vhref(variant, "/")} className="group flex items-baseline gap-3" aria-label={`${person.name} — profile`}>
-          {brand}
-        </Link>
+      <div className={cn("relative z-50", styles.header)}>
+        <div className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12 md:h-[4.5rem]">
+          <Link
+            href={vhref(variant, "/")}
+            className="group flex items-baseline gap-3"
+            aria-label={`${person.name} — profile`}
+          >
+            {brand}
+          </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          <nav aria-label="Primary">
-            <ul className="flex items-center gap-6 lg:gap-8">
-              {desktopItems.map((item) => {
-                const isActive = active(item.href);
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={isActive ? "page" : undefined}
-                      className={cn("relative py-2 transition-colors", styles.link, isActive && styles.linkActive)}
-                    >
-                      {item.label}
-                      {styles.underline ? (
-                        <span
-                          aria-hidden="true"
-                          className={cn(
-                            "absolute -bottom-[2px] left-0 h-px w-full origin-left bg-copper transition-transform duration-300",
-                            isActive ? "scale-x-100" : "scale-x-0",
-                          )}
-                        />
-                      ) : null}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-          {styles.cta && contact ? (
-            <Link href={contact.href} className={styles.cta.className} aria-current={active(contact.href) ? "page" : undefined}>
-              {styles.cta.label}
-            </Link>
-          ) : null}
+          <div className="hidden items-center gap-8 md:flex">
+            <nav aria-label="Primary">
+              <ul className="flex items-center gap-6 lg:gap-8">
+                {desktopItems.map((item) => {
+                  const isActive = active(item.href);
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        aria-current={isActive ? "page" : undefined}
+                        className={cn(
+                          "relative py-2 transition-colors",
+                          styles.link,
+                          isActive && styles.linkActive,
+                        )}
+                      >
+                        {item.label}
+                        {styles.underline ? (
+                          <span
+                            aria-hidden="true"
+                            className={cn(
+                              "absolute -bottom-[2px] left-0 h-px w-full origin-left bg-copper transition-transform duration-300",
+                              isActive ? "scale-x-100" : "scale-x-0",
+                            )}
+                          />
+                        ) : null}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+            {styles.cta && contact ? (
+              <Link
+                href={contact.href}
+                className={styles.cta.className}
+                aria-current={active(contact.href) ? "page" : undefined}
+              >
+                {styles.cta.label}
+              </Link>
+            ) : null}
+          </div>
+
+          <button
+            type="button"
+            className={cn(
+              "relative z-50 -mr-2 px-2 py-2 md:hidden",
+              styles.toggle,
+            )}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
         </div>
-
-        <button
-          type="button"
-          className={cn("relative z-50 -mr-2 px-2 py-2 md:hidden", styles.toggle)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
       </div>
 
       <div
         id="mobile-nav"
         className={cn(
-          "fixed inset-0 top-16 z-40 transition-opacity duration-300 md:hidden",
+          "fixed inset-0 top-16 z-40 transition-opacity duration-300 md:top-[4.5rem] md:hidden",
           styles.panel,
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
         aria-hidden={!open}
       >
-        <nav aria-label="Mobile" className="flex h-full flex-col overflow-y-auto px-5 pt-4 pb-10 sm:px-8">
+        <nav
+          aria-label="Mobile"
+          className="flex h-full flex-col overflow-y-auto px-5 pt-4 pb-10 sm:px-8"
+        >
           <ul className="flex flex-col">
             {items.map((item, i) => {
               const isActive = active(item.href);
@@ -193,7 +223,11 @@ export function NavShell({
               </a>
             </li>
             <li>
-              <Link href="/" tabIndex={open ? 0 : -1} className="t-meta text-paper-3 hover:text-paper">
+              <Link
+                href="/"
+                tabIndex={open ? 0 : -1}
+                className="t-meta text-paper-3 hover:text-paper"
+              >
                 Design variants
               </Link>
             </li>

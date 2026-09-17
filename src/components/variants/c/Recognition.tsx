@@ -31,7 +31,7 @@ export function Recognition({ variant }: VariantProps) {
         aside={<ArrowLink href={vhref(variant, "/recognition/architecture-model")} tone="copper">Open the interactive model</ArrowLink>}
       >
         <Reveal>
-          <ArchitectureMatrix mode="ambient" initialLens="order" />
+          <ArchitectureMatrix mode="ambient" initialLens="order" exploreHref={vhref(variant, "/recognition/architecture-model")} />
         </Reveal>
       </FoamSection>
       <FoamSection id="patterns" label="Architecture patterns" title="Patterns drawn from repeated experience." tone="tint">

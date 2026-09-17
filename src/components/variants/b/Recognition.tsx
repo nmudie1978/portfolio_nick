@@ -40,7 +40,7 @@ export function Recognition({ variant }: VariantProps) {
         aside={<ArrowLink href={vhref(variant, "/recognition/architecture-model")}>Open the interactive model</ArrowLink>}
       >
         <Reveal>
-          <ArchitectureMatrix mode="ambient" initialLens="order" />
+          <ArchitectureMatrix mode="ambient" initialLens="order" exploreHref={vhref(variant, "/recognition/architecture-model")} />
         </Reveal>
       </LedgerSection>
 
