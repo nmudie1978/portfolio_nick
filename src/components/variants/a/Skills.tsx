@@ -3,9 +3,8 @@ import { Container } from "@/components/layout/Container";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Reveal } from "@/components/ui/Reveal";
 import { skillDomains } from "@/content/skills";
-import type { VariantProps } from "@/variants/types";
 
-export function Skills(_: VariantProps) {
+export function Skills() {
   return (
     <PageTransition>
       <PageIntro

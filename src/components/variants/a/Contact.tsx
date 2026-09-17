@@ -4,9 +4,8 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { ButtonLink } from "@/components/ui/Links";
 import { ContactChannels, ContactTopics } from "@/components/shared/blocks";
 import { person } from "@/content/person";
-import type { VariantProps } from "@/variants/types";
 
-export function Contact(_: VariantProps) {
+export function Contact() {
   const { email, linkedin } = person.links;
   return (
     <PageTransition>

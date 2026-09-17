@@ -56,11 +56,6 @@ export function NavShell({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
-  // Close on navigation.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   const items = PRIMARY_NAV.map((i) => ({ ...i, href: vhref(variant, i.href) }));
   const secondary = SECONDARY_NAV.map((i) => ({ ...i, href: vhref(variant, i.href) }));
   const active = (href: string) => isActivePath(pathname, href, variant);
