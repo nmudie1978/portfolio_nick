@@ -12,9 +12,15 @@ export default function NotFound() {
       />
       <Container className="pb-24">
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/">Home</ButtonLink>
-          <ButtonLink href="/case-studies" variant="secondary">Case studies</ButtonLink>
-          <ButtonLink href="/thinking" variant="secondary">Thinking</ButtonLink>
+          <ButtonLink href="/" className="rounded-full">
+            Profile
+          </ButtonLink>
+          <ButtonLink href="/achievements" variant="secondary" className="rounded-full">
+            Achievements
+          </ButtonLink>
+          <ButtonLink href="/recognition" variant="secondary" className="rounded-full">
+            Recognition
+          </ButtonLink>
         </div>
       </Container>
     </>

@@ -71,6 +71,7 @@ export const experience: ExperienceEntry[] = [
       "Multi-BU architecture",
     ],
     relatedCaseStudies: ["marlink-oss-provisioning"],
+    stages: ["Transformation", "BSS/OSS"],
   },
   {
     organisation: "Telia",
@@ -102,6 +103,17 @@ export const experience: ExperienceEntry[] = [
       "telia-e2e-observability",
       "telia-hybrid-cloud",
     ],
+    stages: ["Service Assurance", "Architecture", "BSS/OSS"],
+  },
+  {
+    organisation: "Telenor",
+    role: null,
+    period: null,
+    context: "Nordic operator. Scope and contribution are being confirmed before they are published here.",
+    achievements: [],
+    scope: [],
+    themes: [],
+    stages: [],
   },
   {
     organisation: "Vodafone",
@@ -119,6 +131,7 @@ export const experience: ExperienceEntry[] = [
     themes: ["Network delivery", "MPLS", "Mobile payments", "Multi-market delivery"],
     technologies: ["MPLS"],
     relatedCaseStudies: ["vodafone-m-pesa-network"],
+    stages: ["Operations"],
   },
   {
     organisation: "UPC",
@@ -135,14 +148,12 @@ export const experience: ExperienceEntry[] = [
     ],
     themes: ["Provisioning", "Triple-play", "OSS delivery", "Service activation"],
     relatedCaseStudies: ["upc-derby-triple-play-provisioning"],
+    stages: ["Operations"],
   },
 ];
 
-/**
- * Further organisations from the career, listed without detail until
- * verified scope is supplied.
- */
-export const furtherOrganisations = ["Telenor"];
+/** Organisations in the order they appear on the profile. */
+export const organisations = experience.map((e) => e.organisation);
 
 export const environments = [
   "Operators",

@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────────────────────────────
-   Design tokens
-   A warm graphite ground (not pure black), paper-toned type, and two
-   restrained accents: copper for fulfilment / action, and a cool "signal"
-   tone reserved for assurance / runtime feedback. Everything else is
-   achieved through typography, spacing and hairline rules.
+   Design tokens — "Ocean Depth"
+   A white body with deep navy-teal hero and section bands. Semantic names:
+   `ink` is the ground, `paper` the type, `copper` the primary accent (teal
+   here; the name is kept for compatibility with the utilities) and
+   `signal` a secondary tone for assurance / runtime feedback.
    ────────────────────────────────────────────────────────────────────── */
-@theme inline {
-  --color-ink: #131416;
-  --color-ink-2: #191b1e;
-  --color-ink-3: #1f2226;
-  --color-line: #2a2d33;
-  --color-line-strong: #3a3e46;
+@theme {
+  --color-ink: #f7fafb;
+  --color-ink-2: #eaf1f3;
+  --color-ink-3: #dde7ea;
+  --color-line: #d0dce0;
+  --color-line-strong: #afc2c9;
 
-  --color-paper: #ece9e2;
-  --color-paper-2: #b4b1aa;
-  --color-paper-3: #8e8c87;
+  --color-paper: #07263a;
+  --color-paper-2: #365463;
+  --color-paper-3: #6a8391;
 
-  --color-copper: #c98f5d;
-  --color-copper-soft: rgba(201, 143, 93, 0.14);
-  --color-signal: #8fb5c4;
-  --color-signal-soft: rgba(143, 181, 196, 0.14);
+  --color-copper: #0e7c86;
+  --color-copper-soft: rgba(14, 124, 134, 0.12);
+  --color-signal: #2b5a8c;
+  --color-signal-soft: rgba(43, 90, 140, 0.16);
 
-  --font-display: var(--font-archivo);
+  --font-display: var(--font-instrument);
   --font-sans: var(--font-instrument);
   --font-mono: var(--font-plex-mono);
 
@@ -31,8 +31,14 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --measure: 62ch;
+}
+
+.site-root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 html {
@@ -52,7 +58,7 @@ body {
 
 ::selection {
   background: var(--color-copper);
-  color: var(--color-ink);
+  color: #ffffff;
 }
 
 /* Focus: one visible ring, everywhere, in the accent. */
@@ -80,32 +86,28 @@ body {
    ────────────────────────────────────────────────────────────────────── */
 @utility t-display {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 92%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(2.35rem, 5.4vw, 4.6rem);
   line-height: 1.02;
-  letter-spacing: -0.032em;
+  letter-spacing: -0.03em;
 }
 @utility t-h1 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 92%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(2.1rem, 4.2vw, 3.4rem);
   line-height: 1.05;
   letter-spacing: -0.028em;
 }
 @utility t-h2 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 94%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(1.6rem, 2.8vw, 2.35rem);
   line-height: 1.1;
   letter-spacing: -0.022em;
 }
 @utility t-h3 {
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  font-stretch: 96%;
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(1.2rem, 1.6vw, 1.45rem);
   line-height: 1.2;
   letter-spacing: -0.012em;
@@ -125,10 +127,11 @@ body {
   line-height: 1.55;
 }
 @utility t-meta {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.7rem;
+  font-weight: 600;
   line-height: 1.4;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 @utility t-mono {
@@ -216,7 +219,20 @@ body {
 /* Faint drafting grid used behind the hero diagram */
 .drafting-grid {
   background-image:
-    linear-gradient(to right, rgba(236, 233, 226, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(236, 233, 226, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(20, 30, 40, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 30, 40, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+
+/* Section label, and the light version used on the navy bands */
+.section-label {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-copper);
+}
+.section-label.on-ground { color: #bfeee4; }
+.surface { border-radius: 8px; }

@@ -2,7 +2,7 @@ export const SITE_NAME = "Nick Mudie";
 export const SITE_TITLE =
   "Nick Mudie — Telecom Architecture, BSS/OSS & Transformation";
 export const SITE_DESCRIPTION =
-  "Senior telecom architect with 25+ years across operators, vendors and managed-service environments. BSS/OSS architecture, transformation, service assurance and AI-native telecom operations.";
+  "Nick Mudie is a telecom architecture and transformation professional with 25+ years of experience across BSS/OSS, operations, service assurance, cloud, transformation and modern telecom technology.";
 
 /**
  * Canonical production origin for metadata, canonical URLs, the sitemap
@@ -37,15 +37,19 @@ export interface NavItem {
   href: string;
 }
 
+/**
+ * Primary navigation. Paths are relative to a variant root and resolved
+ * with `vhref()` so each variant stays inside its own tree.
+ */
 export const PRIMARY_NAV: NavItem[] = [
-  { label: "Expertise", href: "/expertise" },
+  { label: "Profile", href: "/" },
   { label: "Experience", href: "/experience" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Thinking", href: "/thinking" },
-  { label: "Academy", href: "/academy" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Recognition", href: "/recognition" },
+  { label: "Skills", href: "/skills" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const SECONDARY_NAV: NavItem[] = [
-  { label: "Architecture Playground", href: "/architecture" },
+  { label: "Architecture model", href: "/recognition/architecture-model" },
 ];

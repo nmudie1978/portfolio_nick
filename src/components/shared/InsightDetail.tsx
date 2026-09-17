@@ -1,37 +1,17 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { pageMetadata } from "@/lib/metadata";
 import { Container } from "@/components/layout/Container";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowLink, BackLink } from "@/components/ui/Links";
 import { ContentBlocks } from "@/components/ui/ContentBlocks";
 import { CaseStudyCard, InsightCard } from "@/components/ui/Cards";
-import { getInsight, insights } from "@/content/insights";
-import { resolveCaseStudies, resolveInsights } from "@/lib/content";
+import { insights } from "@/content/insights";
 import { person } from "@/content/person";
+import type { Insight } from "@/content/types";
+import { resolveCaseStudies, resolveInsights } from "@/lib/content";
+import { insightHref } from "@/lib/routes";
 
-export function generateStaticParams() {
-  return insights.map((i) => ({ slug: i.slug }));
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const insight = getInsight(slug);
-  if (!insight) return {};
-  return pageMetadata({
-    title: insight.title,
-    description: insight.summary,
-    path: `/thinking/${insight.slug}`,
-    type: "article",
-  });
-}
-
-export default async function InsightPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const insight = getInsight(slug);
-  if (!insight) notFound();
-
+/** A single viewpoint, shared by every variant. Reached from Recognition. */
+export function InsightDetail({ insight }: { insight: Insight; }) {
   const studies = resolveCaseStudies(insight.relatedCaseStudies);
   const related = resolveInsights(insight.relatedInsights);
   const index = insights.findIndex((i) => i.slug === insight.slug);
@@ -44,7 +24,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
           <Container>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-3">
-                <BackLink href="/thinking">Thinking</BackLink>
+                <BackLink href={"/recognition"}>Recognition</BackLink>
               </div>
               <div className="md:col-span-9">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
@@ -107,7 +87,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
                 <Eyebrow as="p">Next</Eyebrow>
               </div>
               <div className="md:col-span-9">
-                <ArrowLink href={`/thinking/${next.slug}`} tone="copper">
+                <ArrowLink href={insightHref(next.slug)} tone="copper">
                   {next.title}
                 </ArrowLink>
               </div>

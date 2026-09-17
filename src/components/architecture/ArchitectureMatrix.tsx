@@ -24,10 +24,13 @@ export function ArchitectureMatrix({
   mode = "interactive",
   initialLens = "order",
   className,
+  exploreHref,
 }: {
   mode?: "ambient" | "interactive";
   initialLens?: string;
   className?: string;
+  /** Ambient mode: where "Explore" leads. Omit to hide the link. */
+  exploreHref?: string;
 }) {
   const [lensId, setLensId] = useState(initialLens);
   const [paused, setPaused] = useState(false);
@@ -238,9 +241,11 @@ export function ArchitectureMatrix({
             <span className="text-copper">{lens.label}</span> · {lens.title}
             <span className="sr-only">. {lens.summary}</span>
           </p>
-          <Link href="/architecture" className="t-meta text-paper-2 transition-colors hover:text-copper">
-            Explore →
-          </Link>
+          {exploreHref ? (
+            <Link href={exploreHref} className="t-meta text-paper-2 transition-colors hover:text-copper">
+              Explore →
+            </Link>
+          ) : null}
         </div>
       )}
     </div>

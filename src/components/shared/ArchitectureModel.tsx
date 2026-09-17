@@ -1,29 +1,44 @@
-import { pageMetadata } from "@/lib/metadata";
-import { PageIntro } from "@/components/layout/PageIntro";
-import { Section } from "@/components/layout/Section";
-import { PageTransition } from "@/components/layout/PageTransition";
 import { Container } from "@/components/layout/Container";
+import { PageTransition } from "@/components/layout/PageTransition";
+import { Section } from "@/components/layout/Section";
 import { ArchitectureMatrix } from "@/components/architecture/ArchitectureMatrix";
 import { StackDiagram } from "@/components/architecture/StackDiagram";
 import { FlowDiagram } from "@/components/architecture/FlowDiagram";
-import { ArrowLink } from "@/components/ui/Links";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ArrowLink, BackLink } from "@/components/ui/Links";
 import { Reveal } from "@/components/ui/Reveal";
+import { getCaseStudy } from "@/content/case-studies";
+import { caseStudyHref, insightHref } from "@/lib/routes";
 
-export const metadata = pageMetadata({
-  title: "Architecture Playground",
-  description:
-    "An interactive map of BSS/OSS architecture: product, service and resource layers across catalog, orders, inventory and assurance. Select a lens to see what each part controls.",
-  path: "/architecture",
-});
-
-export default function ArchitecturePage() {
+/**
+ * The interactive architecture model — part of the body of work under
+ * Recognition. Layers down the side, lifecycle across the top, lenses to
+ * read it five ways.
+ */
+export function ArchitectureModel() {
+  const catalogPattern = getCaseStudy("catalog-driven-bss-oss");
   return (
     <PageTransition>
-      <PageIntro
-        label="Architecture Playground"
-        title="One matrix, five ways to read it."
-        lead="Layers down the side — customer, product, service, resource, network. Lifecycle across the top — catalog, orders, inventory, assurance. Choose a lens to see which components are involved and how control and data flow between them."
-      />
+      <header className="pt-14 pb-10 md:pt-24 md:pb-16">
+        <Container>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
+            <div className="md:col-span-3">
+              <BackLink href={"/recognition"}>Recognition</BackLink>
+            </div>
+            <div className="md:col-span-9">
+              <Eyebrow as="p" tone="copper">
+                Architecture model
+              </Eyebrow>
+              <h1 className="t-h1 mt-4 max-w-[18ch]">One matrix, five ways to read it.</h1>
+              <p className="t-lead measure mt-6">
+                Layers down the side — customer, product, service, resource, network. Lifecycle across the top —
+                catalog, orders, inventory, assurance. Choose a lens to see which components are involved and how
+                control and data flow between them.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </header>
 
       <section className="border-t rule py-12 md:py-16" aria-label="Interactive architecture matrix">
         <Container>
@@ -46,7 +61,7 @@ export default function ArchitecturePage() {
               { label: "Resource", note: "What is configured — logical and physical network resources" },
             ]}
           />
-          <ArrowLink href="/thinking/product-service-resource">
+          <ArrowLink href={insightHref("product-service-resource")}>
             The difference between product, service and resource
           </ArrowLink>
         </Reveal>
@@ -73,10 +88,12 @@ export default function ArchitecturePage() {
             ]}
           />
           <div className="flex flex-col gap-2">
-            <ArrowLink href="/thinking/order-decomposition-boundary">
+            <ArrowLink href={insightHref("order-decomposition-boundary")}>
               Order decomposition as an architectural boundary
             </ArrowLink>
-            <ArrowLink href="/case-studies/catalog-driven-bss-oss">Case study: catalog-driven BSS/OSS</ArrowLink>
+            {catalogPattern ? (
+              <ArrowLink href={caseStudyHref(catalogPattern)}>Pattern: catalog-driven BSS/OSS</ArrowLink>
+            ) : null}
           </div>
         </Reveal>
       </Section>
