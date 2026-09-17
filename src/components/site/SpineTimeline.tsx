@@ -80,12 +80,17 @@ export function SpineTimeline({ entries }: { entries: ExperienceEntry[] }) {
                   </div>
                 ) : null}
                 {studies.length ? (
-                  <div className="mt-5 flex flex-col gap-2">
-                    {studies.map((s) => (
-                      <ArrowLink key={s.slug} href={caseStudyHref(s)}>
-                        Engagement: {s.title}
-                      </ArrowLink>
-                    ))}
+                  <div className="mt-6">
+                    <Eyebrow as="p" className="mb-2">
+                      {studies.length === 1 ? "Engagement" : "Engagements"}
+                    </Eyebrow>
+                    <ul className="flex flex-col gap-1.5">
+                      {studies.map((s) => (
+                        <li key={s.slug}>
+                          <ArrowLink href={caseStudyHref(s)}>{s.title}</ArrowLink>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ) : null}
               </div>

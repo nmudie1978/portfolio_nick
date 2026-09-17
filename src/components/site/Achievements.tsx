@@ -16,7 +16,7 @@ export function Achievements() {
       <PageHeader
         label="Achievements"
         title="What was actually delivered."
-        lead="Six pieces of work inside live operators — firsts, greenfield programmes and modernisations. The wording keeps the role as it was; the depth is in each engagement write-up."
+        lead="Eight pieces of work inside live operators — firsts, greenfield programmes and modernisations. The wording keeps the role as it was; the depth is in each engagement write-up."
       />
       <section aria-label="Achievements">
         <Container>

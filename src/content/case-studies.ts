@@ -186,6 +186,175 @@ export const caseStudies: CaseStudy[] = [
     relatedInsights: ["assurance-cloud-native", "agentic-noc-oss"],
   },
   {
+    slug: "telia-it-operations-service-assurance",
+    title: "IT operations and service assurance for four brands",
+    category: "Operations",
+    organisation: "Telia",
+    kind: "engagement",
+    summary:
+      "Overall responsibility for the operational efficiency of four brands — data-centre and hybrid-cloud infrastructure included — with infrastructure consolidation and data-centre migrations delivered while the brands kept running.",
+    context: [
+      {
+        type: "p",
+        text: "Telia Norway operated four brands on an estate that had grown by acquisition and by project: separate data-centre footprints, separate infrastructure, and operational practices that reflected where each brand had come from rather than what the group now needed.",
+      },
+      {
+        type: "p",
+        text: "Head of IT Operations & Service Assurance from 2014 to 2018 meant owning that estate end to end — the infrastructure, the operational processes and the assurance of the services that ran on them — through the period in which Telia's first observability platform and first hybrid cloud were introduced.",
+      },
+    ],
+    challenge: [
+      {
+        type: "p",
+        text: "Raise the operational efficiency of four brands as one operation, consolidate infrastructure that had never been designed together, and migrate data centres — without an outage window that four brands' customers would tolerate.",
+      },
+      {
+        type: "list",
+        items: [
+          "Four brands with different infrastructure, tooling and operating habits.",
+          "Data-centre migrations with live services on both sides of every move.",
+          "Consolidation that had to remove cost without removing resilience.",
+          "An assurance function that needed to see services, not just servers.",
+        ],
+      },
+    ],
+    architecture: [
+      {
+        type: "p",
+        text: "The approach treated the four brands as one operated estate with brand-specific content. Infrastructure was consolidated onto shared platforms; data-centre migrations were sequenced by service so that each move could be validated before the next; and service assurance was built above the infrastructure so that the operational view was of services and their dependencies.",
+      },
+      {
+        type: "flow",
+        title: "From four estates to one operation",
+        steps: [
+          { label: "Four brand estates", note: "Separate data centres, infrastructure and practices", tone: "signal" },
+          { label: "Consolidation", note: "Shared platforms; brand-specific configuration", tone: "copper" },
+          { label: "Data-centre migration", note: "Service by service, validated at each step", tone: "copper" },
+          { label: "Hybrid cloud", note: "On-premise estate extended into AWS" },
+          { label: "Service assurance", note: "One operational view across all four brands" },
+        ],
+      },
+    ],
+    role: [
+      {
+        type: "p",
+        text: "Head of IT Operations & Service Assurance: overall responsibility for the operational efficiency of the four brands, including the data-centre and hybrid-cloud infrastructure, and for delivering the infrastructure consolidation and data-centre migrations.",
+      },
+    ],
+    transformation: [
+      {
+        type: "p",
+        text: "Operations moved from brand-by-brand to one function with one view. The consolidation and migrations changed where and how services ran; the observability platform and hybrid cloud delivered in the same period changed what the operation could see and how fast it could add capacity.",
+      },
+    ],
+    outcome: [
+      {
+        type: "p",
+        text: "Infrastructure consolidated and data centres migrated across the four brands, with the operation running throughout. Efficiency and cost figures are not published here.",
+      },
+    ],
+    lessons: [
+      {
+        type: "callout",
+        text: "Operational efficiency across brands comes from operating one estate with brand-specific content, not from four estates with a shared org chart. Everything else — consolidation, migration, monitoring — follows from that decision.",
+      },
+      {
+        type: "list",
+        items: [
+          "Migrate by service, not by rack; every step should be reversible until it is validated.",
+          "Consolidation that removes resilience is a deferred outage.",
+          "Assurance has to be designed into the operation, not bolted on after the migrations.",
+        ],
+      },
+    ],
+    technologies: ["IT operations", "Data-centre migration", "Infrastructure consolidation", "Hybrid cloud", "Service assurance", "ITSM"],
+    relatedInsights: ["assurance-cloud-native", "legacy-modernisation-without-big-bang"],
+  },
+  {
+    slug: "telia-test-environments",
+    title: "Test environments for BSS/OSS transformation",
+    category: "BSS/OSS",
+    organisation: "Telia",
+    kind: "engagement",
+    summary:
+      "Building and managing the complex test environments behind Telia's BSS/OSS transformation programmes — CRM, CPQ, billing, order provisioning, ITSM and network — including configuration, network zoning, load balancing and data refresh.",
+    context: [
+      {
+        type: "p",
+        text: "A BSS/OSS transformation is tested against a copy of the operator: CRM, CPQ, billing, order provisioning, ITSM and the network, wired together the way production is. Those environments are as complex as the systems they mirror, and a programme can only move as fast as they can be built, refreshed and kept coherent.",
+      },
+      {
+        type: "p",
+        text: "As Global Test Environment Manager at Telia Norway from 2012 to 2014, that was the job: the environments the transformation projects depended on.",
+      },
+    ],
+    challenge: [
+      {
+        type: "p",
+        text: "Provide test environments that behaved like production across six system domains, kept their data current, and could be configured and refreshed at the pace of several transformation projects at once.",
+      },
+      {
+        type: "list",
+        items: [
+          "CRM, CPQ, billing, order provisioning, ITSM and network environments that had to be coordinated as one.",
+          "Network zoning and load balancing that had to match production for the tests to mean anything.",
+          "Data refresh processes that kept environments realistic without leaking or corrupting production data.",
+          "Multiple projects competing for the same environments.",
+        ],
+      },
+    ],
+    architecture: [
+      {
+        type: "p",
+        text: "The environments were managed as a product in their own right: a defined configuration for each, explicit network zoning and load balancing that mirrored production, and repeatable data refresh processes — so that a project could ask for an environment in a known state rather than inherit whatever the last project had left.",
+      },
+      {
+        type: "flow",
+        title: "An environment as a known state",
+        steps: [
+          { label: "Configuration", note: "CRM, CPQ, billing, provisioning, ITSM, network — defined per environment", tone: "signal" },
+          { label: "Network zoning & load balancing", note: "Mirroring production topology", tone: "signal" },
+          { label: "Data refresh", note: "Repeatable, controlled, current", tone: "copper" },
+          { label: "Handover", note: "A project receives an environment in a documented state" },
+        ],
+      },
+    ],
+    role: [
+      {
+        type: "p",
+        text: "Built and managed the test environments supporting the BSS/OSS transformation projects: coordinating the CRM, CPQ, billing, order provisioning, ITSM and network environments, and managing environment configuration, network zoning, load balancing and data refresh.",
+      },
+    ],
+    transformation: [
+      {
+        type: "p",
+        text: "Test environments moved from being a bottleneck each project worked around to a managed capability the programmes could plan against. It was also the ground floor of the BSS/OSS work that followed: understanding how CRM, CPQ, billing, provisioning and the network fit together, by wiring them up.",
+      },
+    ],
+    outcome: [
+      {
+        type: "p",
+        text: "Test environments across CRM, CPQ, billing, order provisioning, ITSM and network, built and managed for the transformation projects of the period. Throughput and defect figures are not published here.",
+      },
+    ],
+    lessons: [
+      {
+        type: "callout",
+        text: "If the test environment does not match production's topology and data, the tests are testing the environment. Zoning, load balancing and data refresh are architecture, not housekeeping.",
+      },
+      {
+        type: "list",
+        items: [
+          "Treat environments as a product with a defined state, an owner and a refresh cadence.",
+          "The integration points between CRM, CPQ, billing and provisioning are where transformations fail; make the environments exercise them.",
+          "Whoever manages the environments ends up understanding the whole stack — use that.",
+        ],
+      },
+    ],
+    technologies: ["Test environments", "CRM", "CPQ", "Billing", "Order provisioning", "ITSM", "Network zoning", "Load balancing"],
+    relatedInsights: ["legacy-modernisation-without-big-bang", "order-decomposition-boundary"],
+  },
+  {
     slug: "telia-b2b-bss-oss-transformation",
     title: "Greenfield BSS/OSS for B2B data communications after the TDC Denmark merger",
     category: "BSS/OSS",

@@ -46,6 +46,32 @@ export const achievements: Achievement[] = [
       "A cross-domain service view above the individual tools, so operations could see services rather than components.",
   },
   {
+    slug: "telia-it-operations",
+    organisation: "Telia",
+    title: "IT operations and service assurance for four brands",
+    headline:
+      "Head of IT Operations & Service Assurance — overall responsibility for the operational efficiency of four brands, including data-centre and hybrid-cloud infrastructure.",
+    scope: ["Four brands", "Data-centre and hybrid-cloud infrastructure", "Infrastructure consolidation", "Data-centre migrations"],
+    technologies: ["IT operations", "Data-centre migration", "Service assurance", "ITSM"],
+    caseStudy: "telia-it-operations-service-assurance",
+    stage: "Service Assurance",
+    significance:
+      "One operated estate with brand-specific content, rather than four estates with a shared org chart — the decision everything else followed from.",
+  },
+  {
+    slug: "telia-test-environments",
+    organisation: "Telia",
+    title: "Test environments for BSS/OSS transformation",
+    headline:
+      "Built and managed the complex test environments — CRM, CPQ, billing, order provisioning, ITSM and network — behind Telia's BSS/OSS transformation projects.",
+    scope: ["CRM", "CPQ", "Billing", "Order provisioning", "ITSM", "Network"],
+    technologies: ["Test environments", "Network zoning", "Load balancing", "Data refresh"],
+    caseStudy: "telia-test-environments",
+    stage: "Operations",
+    significance:
+      "An environment that does not match production's topology and data is testing itself — zoning, load balancing and refresh are architecture, not housekeeping.",
+  },
+  {
     slug: "telia-b2b-bss-oss",
     organisation: "Telia",
     title: "Greenfield BSS/OSS transformation for B2B data communications",

@@ -200,6 +200,8 @@ export const experience: ExperienceEntry[] = [
       "telia-b2b-bss-oss-transformation",
       "telia-e2e-observability",
       "telia-hybrid-cloud",
+      "telia-it-operations-service-assurance",
+      "telia-test-environments",
     ],
     stages: ["Service Assurance", "Architecture", "BSS/OSS", "Transformation"],
   },
@@ -217,7 +219,7 @@ export const experience: ExperienceEntry[] = [
       {
         title: "Operations & Deployment Specialist",
         period: "2009 – 2010",
-        highlights: ["Operations and deployment across Italy, Greece and Ireland."],
+        highlights: ["Operations and deployment of the Vodafone 360 music service across Italy, Greece and Ireland."],
       },
     ],
     context:
@@ -228,7 +230,7 @@ export const experience: ExperienceEntry[] = [
     scope: [
       "MPLS network expansion for the M-Pesa platform",
       "Delivery management across two markets",
-      "Operations and deployment in Italy, Greece and Ireland",
+      "Vodafone 360 music service operations and deployment in Italy, Greece and Ireland",
     ],
     themes: ["Network delivery", "MPLS", "Mobile payments", "Multi-market delivery"],
     technologies: ["MPLS"],
