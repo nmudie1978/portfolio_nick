@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────
+   Design tokens
+   A warm graphite ground (not pure black), paper-toned type, and two
+   restrained accents: copper for fulfilment / action, and a cool "signal"
+   tone reserved for assurance / runtime feedback. Everything else is
+   achieved through typography, spacing and hairline rules.
+   ────────────────────────────────────────────────────────────────────── */
+@theme inline {
+  --color-ink: #131416;
+  --color-ink-2: #191b1e;
+  --color-ink-3: #1f2226;
+  --color-line: #2a2d33;
+  --color-line-strong: #3a3e46;
+
+  --color-paper: #ece9e2;
+  --color-paper-2: #b4b1aa;
+  --color-paper-3: #8e8c87;
+
+  --color-copper: #c98f5d;
+  --color-copper-soft: rgba(201, 143, 93, 0.14);
+  --color-signal: #8fb5c4;
+  --color-signal-soft: rgba(143, 181, 196, 0.14);
+
+  --font-display: var(--font-archivo);
+  --font-sans: var(--font-instrument);
+  --font-mono: var(--font-plex-mono);
+
+  --breakpoint-xs: 30rem;
+}
+
+:root {
+  color-scheme: dark;
+  --measure: 62ch;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-copper);
+  color: var(--color-ink);
+}
+
+/* Focus: one visible ring, everywhere, in the accent. */
+:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Typography roles
+   ────────────────────────────────────────────────────────────────────── */
+@utility t-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-stretch: 92%;
+  font-weight: 500;
+  font-size: clamp(2.35rem, 5.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+}
+@utility t-h1 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-stretch: 92%;
+  font-weight: 500;
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+}
+@utility t-h2 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-stretch: 94%;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+}
+@utility t-h3 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-stretch: 96%;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+}
+@utility t-lead {
+  font-size: clamp(1.08rem, 1.45vw, 1.3rem);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: var(--color-paper-2);
+}
+@utility t-body {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+@utility t-small {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+@utility t-meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@utility t-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* Hairline rules and surfaces */
+@utility rule {
+  border-color: var(--color-line);
+}
+@utility surface {
+  background-color: var(--color-ink-2);
+  border: 1px solid var(--color-line);
+}
+
+/* Measured prose */
+@utility measure {
+  max-width: var(--measure);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Motion
+   Reveal-on-scroll and page entrance are opt-in and disabled for users
+   who prefer reduced motion.
+   ────────────────────────────────────────────────────────────────────── */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes pulse-along {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -24; }
+}
+
+.page-in {
+  animation: page-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Only hide reveal content once JS has confirmed it can show it again. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 640ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 640ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.edge-flow {
+  stroke-dasharray: 6 6;
+  animation: pulse-along 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .page-in { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .edge-flow { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Underline link treatment used in prose and nav */
+.link-ul {
+  text-decoration: underline;
+  text-decoration-color: var(--color-line-strong);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 200ms ease, color 200ms ease;
+}
+.link-ul:hover {
+  text-decoration-color: var(--color-copper);
+  color: var(--color-paper);
+}
+
+/* Faint drafting grid used behind the hero diagram */
+.drafting-grid {
+  background-image:
+    linear-gradient(to right, rgba(236, 233, 226, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 233, 226, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
