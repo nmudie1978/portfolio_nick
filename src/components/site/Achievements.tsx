@@ -37,7 +37,7 @@ export function Achievements() {
                       <p className="t-small mt-1 text-paper-3">{a.stage}</p>
                     </div>
                     <div className="md:col-span-9">
-                      <h2 id={`ach-${a.slug}`} className="t-h2 max-w-[24ch] text-paper">
+                      <h2 id={`ach-${a.slug}`} className="t-h2 text-paper">
                         {a.title}
                       </h2>
                       <p className="t-lead mt-4 max-w-[60ch]">{a.headline}</p>
