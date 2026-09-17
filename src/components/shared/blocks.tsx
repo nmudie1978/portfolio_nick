@@ -1,12 +1,8 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowLink, ButtonLink, ExternalLink } from "@/components/ui/Links";
-import { TagList } from "@/components/ui/Tag";
 import { Reveal } from "@/components/ui/Reveal";
 import { person } from "@/content/person";
-import type { ExperienceEntry } from "@/content/types";
 import { cn } from "@/lib/cn";
-import { resolveCaseStudies } from "@/lib/content";
-import { caseStudyHref } from "@/lib/routes";
 
 /* ──────────────────────────────────────────────────────────────────────
    Content-heavy blocks shared by all variants. They use only semantic
@@ -97,130 +93,6 @@ export function AcademyWorkGrid({ className }: { className?: string }) {
         </Reveal>
       ))}
     </ul>
-  );
-}
-
-/** One organisation, in full. Periods and roles render only when verified. */
-export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
-  const studies = resolveCaseStudies(entry.relatedCaseStudies);
-  const pending = entry.achievements.length === 0 && entry.scope.length === 0;
-  return (
-    <article id={entry.organisation.toLowerCase()} className="grid grid-cols-1 gap-4 py-10 md:grid-cols-12 md:gap-8">
-      <div className="md:col-span-4">
-        <h3 className="t-h2 text-paper">{entry.organisation}</h3>
-        <dl className="mt-3 flex flex-col gap-1">
-          <div className="flex gap-3">
-            <dt className="t-meta w-14 shrink-0 text-paper-3">Role</dt>
-            <dd className="t-small text-paper-2">{entry.role ?? "To be confirmed"}</dd>
-          </div>
-          <div className="flex gap-3">
-            <dt className="t-meta w-14 shrink-0 text-paper-3">Period</dt>
-            <dd className="t-small text-paper-2">{entry.period ?? "To be confirmed"}</dd>
-          </div>
-          <div className="flex gap-3">
-            <dt className="t-meta w-14 shrink-0 text-paper-3">Based</dt>
-            <dd className="t-small text-paper-2">{entry.location}</dd>
-          </div>
-          {entry.stages.length ? (
-            <div className="flex gap-3">
-              <dt className="t-meta w-14 shrink-0 text-paper-3">Stage</dt>
-              <dd className="t-small text-paper-2">{entry.stages.join(" · ")}</dd>
-            </div>
-          ) : null}
-        </dl>
-      </div>
-      <div className="md:col-span-8">
-        <Eyebrow as="p" className="mb-2">
-          Scope
-        </Eyebrow>
-        <p className="t-body measure text-paper-2">{entry.context}</p>
-
-        {entry.roles?.length ? (
-          <>
-            <Eyebrow as="p" className="mb-3 mt-6">
-              Roles
-            </Eyebrow>
-            <ol className="flex flex-col divide-y rule border-y rule">
-              {entry.roles.map((r) => (
-                <li key={`${r.title}-${r.period}`} className="grid grid-cols-1 gap-2 py-4 md:grid-cols-12 md:gap-6">
-                  <div className="md:col-span-4">
-                    <p className="t-small font-medium text-paper">{r.title}</p>
-                    <p className="t-meta mt-1 text-paper-3">
-                      {r.period}
-                      {r.unit ? ` · ${r.unit}` : null}
-                    </p>
-                  </div>
-                  <ul className="flex flex-col gap-1.5 md:col-span-8">
-                    {r.highlights.map((h) => (
-                      <li key={h} className="t-small flex gap-3 text-paper-2">
-                        <span className="mt-[0.7em] h-px w-3 shrink-0 bg-copper" aria-hidden="true" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ol>
-          </>
-        ) : null}
-
-        {!pending ? (
-          <>
-            {entry.achievements.length ? (
-              <>
-                <Eyebrow as="p" className="mb-2 mt-6">
-                  Selected contribution
-                </Eyebrow>
-                <ul className="flex flex-col gap-3">
-                  {entry.achievements.map((a) => (
-                    <li key={a} className="t-body flex gap-3 text-paper">
-                      <span className="mt-[0.72em] h-px w-3 shrink-0 bg-copper" aria-hidden="true" />
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
-            {entry.scope.length ? (
-              <>
-                <Eyebrow as="p" className="mb-2 mt-6">
-                  Responsibilities
-                </Eyebrow>
-                <ul className="flex flex-col gap-1">
-                  {entry.scope.map((s) => (
-                    <li key={s} className="t-small text-paper-2">
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
-            {entry.themes.length ? (
-              <>
-                <Eyebrow as="p" className="mb-3 mt-6">
-                  Themes &amp; technologies
-                </Eyebrow>
-                <TagList items={entry.themes} />
-              </>
-            ) : null}
-            {entry.technologies?.length ? (
-              <div className="mt-3">
-                <TagList items={entry.technologies} tone="copper" />
-              </div>
-            ) : null}
-            {studies.length ? (
-              <div className="mt-6 flex flex-col gap-2">
-                {studies.map((s) => (
-                  <ArrowLink key={s.slug} href={caseStudyHref(s)}>
-                    Engagement: {s.title}
-                  </ArrowLink>
-                ))}
-              </div>
-            ) : null}
-          </>
-        ) : null}
-      </div>
-    </article>
   );
 }
 
