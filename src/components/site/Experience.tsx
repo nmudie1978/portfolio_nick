@@ -3,7 +3,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { OrganisationDetail } from "@/components/shared/blocks";
 import { environments, experience } from "@/content/experience";
 import { PageHeader, PageSection } from "./primitives";
-import { Timeline } from "./Timeline";
 
 export function Experience() {
   return (
@@ -14,20 +13,11 @@ export function Experience() {
         lead="Operations, service assurance, architecture, BSS/OSS, transformation, AI and modern telecom — a progression of responsibility, and the organisations where it was exercised. Roles and periods are shown only where confirmed."
       />
       <PageSection
-        id="progression"
-        label="Progression"
-        title="Six stages, one direction."
-        intro="Organisations are attached to the stages they evidence. This is a map of responsibility, not a chronology."
-      >
-        <Timeline detailed />
-      </PageSection>
-      <PageSection
         id="organisations"
         label="Organisations"
         title="Where the work was done."
         intro={`Across ${environments.join(", ").toLowerCase()}.`}
-        tone="tint"
-      >
+        >
         <div className="flex flex-col divide-y rule border-y rule">
           {experience.map((entry) => (
             <Reveal key={entry.organisation}>

@@ -79,6 +79,8 @@ export interface ExperienceEntry {
   role: string | null;
   /** Verified period. Null until confirmed — never invented. */
   period: string | null;
+  /** Where the role was based. */
+  location: string;
   /** What kind of environment this was. */
   context: string;
   /** Verified, concisely stated achievements. Role framing is preserved as supplied. */

@@ -8,18 +8,15 @@ import { ArchitectureMatrix } from "@/components/architecture/ArchitectureMatrix
 import { AcademyOverview } from "@/components/shared/blocks";
 import { Ground, GroundButton, PageSection, onGround, shape } from "./primitives";
 import { THEME } from "./theme";
+import { AchievementCarousel } from "./AchievementCarousel";
 import { person } from "@/content/person";
-import { achievements } from "@/content/achievements";
 import { skillDomains } from "@/content/skills";
-import { getCaseStudy } from "@/content/case-studies";
 import { cn } from "@/lib/cn";
-import { caseStudyHref } from "@/lib/routes";
 
 export function Home() {
   const t = THEME;
   const g = onGround();
   const s = shape();
-  const featured = achievements.filter((a) => ["upc-derby", "telia-b2b-bss-oss", "telia-e2e-observability"].includes(a.slug));
   const split = t.heroLayout !== "stacked";
   const reverse = t.heroLayout === "split-reverse";
 
@@ -167,28 +164,11 @@ export function Home() {
         id="achievements"
         label="Selected achievements"
         title="Delivered, not described."
-        intro="Firsts and greenfield programmes inside live operators. Each has a detailed case study; none carries an invented metric."
+        intro="Firsts, greenfield programmes and modernisations inside live operators. Each has a detailed case study; none carries an invented metric."
         aside={<ArrowLink href={"/achievements"}>All achievements</ArrowLink>}
         tone="tint"
       >
-        <ol className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {featured.map((a, i) => {
-            const study = getCaseStudy(a.caseStudy);
-            return (
-              <Reveal key={a.slug} as="li" delay={i * 60}>
-                <Link
-                  href={study ? caseStudyHref(study) : "/achievements"}
-                  className={cn("group flex h-full flex-col border rule bg-ink p-6 transition-colors hover:border-copper", s.card)}
-                >
-                  <span className="section-label">{a.organisation}</span>
-                  <span className="t-h3 mt-3 block text-paper transition-colors group-hover:text-copper">{a.title}</span>
-                  <span className="t-small mt-3 block text-paper-2">{a.headline}</span>
-                  <span className="t-small mt-auto pt-6 font-semibold text-copper">Read the case study →</span>
-                </Link>
-              </Reveal>
-            );
-          })}
-        </ol>
+        <AchievementCarousel />
       </PageSection>
 
       {/* ── Skills ────────────────────────────────────────────────────── */}

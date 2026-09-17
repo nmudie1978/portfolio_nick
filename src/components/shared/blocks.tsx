@@ -136,6 +136,10 @@ export function OrganisationDetail({ entry }: { entry: ExperienceEntry }) {
             <dt className="t-meta w-14 shrink-0 text-paper-3">Period</dt>
             <dd className="t-small text-paper-2">{entry.period ?? "To be confirmed"}</dd>
           </div>
+          <div className="flex gap-3">
+            <dt className="t-meta w-14 shrink-0 text-paper-3">Based</dt>
+            <dd className="t-small text-paper-2">{entry.location}</dd>
+          </div>
           {entry.stages.length ? (
             <div className="flex gap-3">
               <dt className="t-meta w-14 shrink-0 text-paper-3">Stage</dt>

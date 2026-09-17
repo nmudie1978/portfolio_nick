@@ -51,10 +51,11 @@ export const journey: JourneyStage[] = [
 export const experience: ExperienceEntry[] = [
   {
     organisation: "Analysys Mason",
+    location: "Oslo, Norway",
     role: "Principal Transformation Consultant",
     period: "Current",
     context:
-      "Telecom, media and technology consultancy. Transformation consulting for telecom operators, based in Oslo — the current role.",
+      "Telecom, media and technology consultancy. Transformation consulting for telecom operators — the current role.",
     achievements: [],
     scope: ["Transformation consulting for telecom operators"],
     themes: ["Transformation", "BSS/OSS", "Architecture", "Consulting"],
@@ -62,6 +63,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     organisation: "Marlink",
+    location: "Norway",
     role: null,
     period: null,
     context:
@@ -86,6 +88,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     organisation: "Telia",
+    location: "Norway",
     role: null,
     period: null,
     context:
@@ -118,6 +121,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     organisation: "Telenor",
+    location: "Norway",
     role: null,
     period: null,
     context: "Nordic operator. Scope and contribution are being confirmed before they are published here.",
@@ -128,6 +132,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     organisation: "Vodafone",
+    location: "Germany",
     role: "Delivery Manager, M-Pesa",
     period: null,
     context:
@@ -146,6 +151,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     organisation: "UPC",
+    location: "The Netherlands",
     role: "OSS Delivery Engineer",
     period: null,
     context:
