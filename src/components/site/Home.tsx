@@ -50,8 +50,9 @@ export function Home() {
       className={cn(
         "mx-auto max-w-[240px]",
         g.light ? "shadow-[0_24px_60px_-24px_rgba(6,44,48,0.5)]" : "shadow-[0_24px_60px_-28px_rgba(20,20,40,0.35)]",
-        split && (reverse ? "lg:mr-auto lg:ml-0" : "lg:ml-auto"),
-        split && "lg:translate-y-40",
+        // Beside the name, top-aligned with it (the eyebrow sits above both).
+        split && (reverse ? "lg:mr-0 lg:ml-auto" : "lg:ml-0"),
+        split && "lg:mt-11",
       )}
     />
   );
@@ -86,7 +87,7 @@ export function Home() {
           {split ? (
             <div className={cn("grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12", reverse && "lg:[direction:rtl]")}>
               <div className={cn("lg:col-span-7", reverse && "lg:[direction:ltr]")}>{heroText}</div>
-              <div className={cn("lg:col-span-5 lg:self-end", reverse && "lg:[direction:ltr]")}>{portrait}</div>
+              <div className={cn("lg:col-span-5 lg:self-start", reverse && "lg:[direction:ltr]")}>{portrait}</div>
             </div>
           ) : (
             heroText
