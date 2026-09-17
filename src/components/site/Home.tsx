@@ -224,11 +224,6 @@ export function Home() {
         </ol>
       </PageSection>
 
-      {/* ── Focus ─────────────────────────────────────────────────────── */}
-      <PageSection id="focus" label="Current focus" title="What I am working on now.">
-        <p className="t-lead max-w-[70ch] text-paper-2">{person.currentFocus}</p>
-      </PageSection>
-
       {/* ── Recognition band + Academy ───────────────────────────────── */}
       <PageSection
         id="recognition"
